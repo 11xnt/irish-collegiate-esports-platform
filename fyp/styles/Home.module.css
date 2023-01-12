@@ -7,6 +7,42 @@
   min-height: 100vh;
 }
 
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  background-color: #0d0d0d;
+}
+
+.menuItem {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-right: 1px solid #bbb;
+}
+
+.active {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-right: 1px solid #bbb;
+  background-color: #AAAAAA;
+}
+
+.menu:last-child {
+  border-right: none;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;

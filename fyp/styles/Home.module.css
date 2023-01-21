@@ -44,6 +44,7 @@
 }
 
 .description {
+  padding-top: 14px;
   display: inherit;
   justify-content: inherit;
   align-items: inherit;
@@ -62,8 +63,9 @@
 }
 
 .description p {
-  position: relative;
+  position: left;
   margin: 0;
+  text-align: left;
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
@@ -83,11 +85,26 @@
 }
 
 .card {
-  padding: 1rem 1.2rem;
+  padding: 25px;
+  width: 400px;
+  height: 350px;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
+  background: rgba(var(--card-rgb), 0.1);
+}
+
+.cardText {
+  margin: 0;
+  padding: -4rem 0rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 30ch;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  position: relative;
 }
 
 .card span {

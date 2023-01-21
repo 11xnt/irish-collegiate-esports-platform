@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Menu from '../components/menu'
+import TournamentCard from '../components/tournamentCard'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,7 @@ export default function Profile() {
       </Head>
       <main className={styles.main}>
         <Menu/>
-        <p>This is profile</p>
+        <TournamentCard/>
       </main>
     </>
   )

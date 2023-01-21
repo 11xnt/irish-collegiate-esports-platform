@@ -30,12 +30,3 @@ export default function Menu() {
         </div>
     )
 }
-
-            {/* <Link href='/' className={styles.menuItem}>
-                <a className={currentRoute == "/" ? "active" : ""}>
-                    Home
-                </a>
-            </Link>
-            <Link href='/tournaments' className={styles.menuItem}>Tournaments</Link>
-            <Link href='/teams' className={styles.menuItem}>Teams</Link>
-            <Link href='/profile' className={styles.menuItem}>Profile</Link> */}

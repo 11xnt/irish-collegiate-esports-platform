@@ -97,20 +97,11 @@ body {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
-
-.card {
-  margin: 10rem;
-  flex-basis: 45%;
-  padding: 1.5rem;
-  text-align: left;
-  border: 10px solid #0ae73a;
-  border-radius: 100px;
-  border-color: green
 }

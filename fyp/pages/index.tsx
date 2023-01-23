@@ -13,7 +13,7 @@ export default function Index() {
 
   const [password, setPassword] = React.useState("");
 	const [email, setEmail] = React.useState("");
-	const [formSuc, setFormSuc] = React.useState(false);
+	const [formSuc, setFormSuc] = React.useState(true);
 
 	const handleSubmit = (event: {
 		target: any; preventDefault: () => void;

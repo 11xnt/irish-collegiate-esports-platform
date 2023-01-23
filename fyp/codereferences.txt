@@ -1,0 +1,4 @@
+references for fyp:
+https://nvd.codes/post/add-styling-to-an-active-link-in-nextjs/
+https://www.w3schools.com/howto/howto_css_cards.asp
+https://stackoverflow.com/questions/68721497/how-to-use-next-js-image-inside-material-ui-card-media

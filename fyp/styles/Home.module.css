@@ -1,6 +1,5 @@
 .main {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   text-align: left;
   align-items: center;
@@ -8,6 +7,107 @@
   margin-top: 5rem;
   margin-left: 5rem;
   margin-right: 5rem;
+}
+
+.profileSummary {
+  margin-top: -12rem;
+  margin-left: 17rem;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #333;
+  align-content: space-between;
+  margin: 10rem 15rem 10rem 15rem;
+  min-width: 500px;
+  min-height: 1200px;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+.containerItem {
+  background-color: cadetblue;
+}
+
+.containerItem1 {
+  min-width: 500px;
+  min-height: 800px;
+  margin: 50px 50px 50px 50px;
+  width: 75%;
+}
+
+.containerItem2 {
+  flex-direction: row;
+  min-width: 300px;
+  min-height: 800px;
+  margin: 50px 50px 50px 50px;
+  width: 10%;
+}
+
+.containerItem3 {
+  flex-direction: row;
+  min-width: 300px;
+  min-height: 500px;
+  margin: 50px 50px 50px 50px;
+  width: 100%;
+}
+
+.containerItem4 {
+  flex-direction: row;
+  justify-content: space-around;
+  min-width: 300px;
+  min-height: 500px;
+  margin: 0px 50px 0px 50px;
+  width: 100%;
+}
+
+.cardRow {
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardRow div {
+  flex-grow: 1 0 40%;
+}
+
+.gameAccounts {
+  flex-direction: column;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  /* position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding: 0rem;
+  padding-bottom: 10rem;
+  padding-right: 38%;
+  margin-top: 2rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+  background: rgba(var(--card-rgb), 0.1); */
+}
+
+.gameAccountItem {
+  padding: 20px 0px 10px 20px;
+  align-items: left;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  /* float: left;
+  display: block;
+  color: white;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none; */
 }
 
 .row {
@@ -87,11 +187,43 @@
   border-radius: var(--border-radius);
 }
 
+.profileImage {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width:200px;
+  height:200px;
+  z-index: 0;
+  border-radius: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
 .code {
   font-weight: 700;
   font-family: var(--font-mono);
 }
 
+.sub {
+  display: flex;
+}
+
+.heading {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: left;
+  padding: 0rem;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  margin-right: 50rem;
+}
 .grid {
   display: grid;
   max-width: 100%;
@@ -99,6 +231,28 @@
   align-items: center;
   display: flex;
   margin-bottom: 5rem;
+}
+
+.profile {
+  display: grid;
+  max-width: 75%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-bottom: 5rem;
+  background-color: #333;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.profileGrid {
+  display: grid;
+  max-width: 85%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .card {
@@ -111,6 +265,8 @@
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
   background: rgba(var(--card-rgb), 0.1);
+  min-height: 400px;
+  min-width: 500px;
 }
 
 .pCard {

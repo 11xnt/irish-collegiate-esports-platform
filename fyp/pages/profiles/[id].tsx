@@ -2,10 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
-import Menu from '../components/menu'
-import TournamentCard from '../components/tournamentCard'
-import PlayerCard from '../components/playerCard'
+import styles from '../../styles/Home.module.css'
+import Menu from '../../components/menu'
+import TournamentCard from '../../components/tournamentCard'
+import PlayerCard from '../../components/playerCard'
+import TeamCard from '../../components/teamCard'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -47,10 +48,10 @@ export default function Profile() {
         <div className={`${styles.containerItem} ${styles.containerItem3}`}>
             <h2>Teams</h2>
             <div className={styles.cardRow}>
-              <PlayerCard/>
-              <PlayerCard/>
-              <PlayerCard/>
-              <PlayerCard/>
+              <TeamCard/>
+              <TeamCard/>
+              <TeamCard/>
+              <TeamCard/>
             </div>
         </div>
       </div>

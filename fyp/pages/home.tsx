@@ -19,20 +19,27 @@ export default function Home() {
 					<meta name="viewport" content="width=device-width, initial-scale=1" />
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
+				<main>
 				<Menu/>
-				<main className={styles.main}>
-				<h2>Featured Tournaments</h2>
-					<div className={styles.grid}>
-					{
-						tourCardList.map(() => <TournamentCard key={""}/>)
-					}
+				<div className={styles.container}>
+					<div className={`${styles.containerItem} ${styles.containerItem4}`}>
+						<h2>Featured Tournaments</h2>
+							<div className={styles.cardRow}>
+							{
+								tourCardList.map(() => <TournamentCard key={""}/>)
+							}
+							</div>
 					</div>
-				<h2>Recommended Players</h2>
-					<div className={styles.grid}>
-					{
-						teamCardList.map(() => <PlayerCard key={""}/>)
-					}
+
+					<div className={`${styles.containerItem} ${styles.containerItem3}`}>
+						<h2>Recommended Players</h2>
+							<div className={styles.cardRow}>
+							{
+								teamCardList.map(() => <PlayerCard key={""}/>)
+							}
+							</div>
 					</div>
+				</div>
 				</main>
 			</>
 		)

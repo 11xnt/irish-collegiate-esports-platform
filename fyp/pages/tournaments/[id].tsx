@@ -1,16 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
-import TournamentCard from '../../components/tournamentCard'
-import PlayerCard from '../../components/playerCard'
 import TeamCard from '../../components/teamCard'
+import useSWR  from 'swr';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Tournament() {
+const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
+
+export default function Tournament({id} :any) {
+  id = 1
+  const { data, error } = useSWR(`/api/tournaments/${id}`, fetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   return (
     <>
       <Head>
@@ -29,7 +35,7 @@ export default function Tournament() {
                     alt=''/>
             </div>
             <div className={styles.profileSummary}>
-              <h2>Tournament1</h2>
+              <h2>{data.name}</h2>
               <h3>12 Teams</h3>
               <h3>Created: 26/01/23</h3>
             </div>

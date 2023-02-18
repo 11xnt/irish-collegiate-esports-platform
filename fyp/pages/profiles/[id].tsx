@@ -7,10 +7,21 @@ import Menu from '../../components/menu'
 import TournamentCard from '../../components/tournamentCard'
 import PlayerCard from '../../components/playerCard'
 import TeamCard from '../../components/teamCard'
+import { PrismaClient } from '@prisma/client'
+import useSWR  from 'swr';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Profile() {
+const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
+
+export default function Profile({id}: any) {
+
+  id = 1
+  const { data, error } = useSWR(`/api/teams/${id}`, fetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   return (
     <>
       <Head>

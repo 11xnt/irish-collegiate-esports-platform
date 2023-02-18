@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 
+
+
 const tournamentId = '/tournaments/1'
 
 export default function TournamentCard() {

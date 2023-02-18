@@ -6,10 +6,20 @@ import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
 import TournamentCard from '../../components/tournamentCard'
 import PlayerCard from '../../components/playerCard'
+import useSWR  from 'swr';
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Team() {
+const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
+
+export default function Team({id} : any) {
+
+  id = 2
+  const { data, error } = useSWR(`/api/teams/${id}`, fetcher)
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   return (
     <>
       <Head>
@@ -28,7 +38,7 @@ export default function Team() {
                     alt=''/>
             </div>
             <div className={styles.profileSummary}>
-              <h2>Team1</h2>
+              <h2>{data.name}</h2>
               <h3>6 Members</h3>
               <h3>Created: 26/01/23</h3>
             </div>

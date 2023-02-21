@@ -6,10 +6,21 @@ import styles from '../styles/Home.module.css'
 import Menu from '../components/menu'
 import TeamCard from '../components/teamCard'
 import PlayerCard from '../components/playerCard'
+import TeamList from '../components/teamList'
+import useSWR	from 'swr';
 
 const inter = Inter({ subsets: ['latin'] })
 
+const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
+
+
 export default function Teams() {
+
+  const { data, error } = useSWR('/api/home/recommend', fetcher);
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
   return (
     <>
       <Head>
@@ -25,13 +36,7 @@ export default function Teams() {
         <div className={`${styles.containerItem} ${styles.containerItem3}`}>
             <h2>Teams</h2>
             <div className={styles.cardRow}>
-              <TeamCard/>
-              <TeamCard/>
-              <TeamCard/>
-              <TeamCard/>
-              <TeamCard/>
-              <TeamCard/>
-              <TeamCard/>
+              <TeamList teams={data.foundTeams}/>
             </div>
         </div>
       </div>

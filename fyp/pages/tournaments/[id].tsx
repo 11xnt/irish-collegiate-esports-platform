@@ -5,18 +5,22 @@ import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
 import TeamCard from '../../components/teamCard'
 import useSWR  from 'swr';
+import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
-export default function Tournament({id} :any) {
-  id = 1
+export default function Tournament() {
+  // id = 1
+  const router = useRouter()
+  const id = router.query.id as string
+
   const { data, error } = useSWR(`/api/tournaments/${id}`, fetcher)
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
-
+  
   return (
     <>
       <Head>
@@ -36,13 +40,14 @@ export default function Tournament({id} :any) {
             </div>
             <div className={styles.profileSummary}>
               <h2>{data.name}</h2>
-              <h3>12 Teams</h3>
-              <h3>Created: 26/01/23</h3>
+              <h3>{data.maxTeams} Teams</h3>
+              <h3>Created: {data.createdAt}</h3>
             </div>
         </div>
         <div className={`${styles.containerItem} ${styles.containerItem3}`}>
             <h2>Teams</h2>
             <div className={styles.cardRow}>
+              {/* <TeamCard/>
               <TeamCard/>
               <TeamCard/>
               <TeamCard/>
@@ -53,8 +58,7 @@ export default function Tournament({id} :any) {
               <TeamCard/>
               <TeamCard/>
               <TeamCard/>
-              <TeamCard/>
-              <TeamCard/>
+              <TeamCard/> */}
             </div>
         </div>
       </div>

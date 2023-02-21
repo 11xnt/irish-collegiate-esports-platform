@@ -7,14 +7,17 @@ import Menu from '../../components/menu'
 import TournamentCard from '../../components/tournamentCard'
 import PlayerCard from '../../components/playerCard'
 import useSWR  from 'swr';
+import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
-export default function Team({id} : any) {
+export default function Team() {
 
-  id = 2
+  const router = useRouter()
+  const id = router.query.id as string
+
   const { data, error } = useSWR(`/api/teams/${id}`, fetcher)
 
   if (error) return <div>Failed to load</div>
@@ -46,6 +49,8 @@ export default function Team({id} : any) {
         <div className={`${styles.containerItem} ${styles.containerItem3}`}>
             <h2>Players</h2>
             <div className={styles.cardRow}>
+              
+              {/* <PlayerCard/>
               <PlayerCard/>
               <PlayerCard/>
               <PlayerCard/>
@@ -56,8 +61,7 @@ export default function Team({id} : any) {
               <PlayerCard/>
               <PlayerCard/>
               <PlayerCard/>
-              <PlayerCard/>
-              <PlayerCard/>
+              <PlayerCard/> */}
             </div>
         </div>
       </div>

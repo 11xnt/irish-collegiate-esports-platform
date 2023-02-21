@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 const playerId = '/profiles/1'
 
-export default function PlayerCard() {
+export default function PlayerCard({player}: any) {
     return (
       <Link href={playerId}>
         <div className={styles.pCard}>

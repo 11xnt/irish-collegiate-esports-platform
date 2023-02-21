@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               prizePool: parseInt(data.prizePool),
               maxTeams: parseInt(data.maxTeams),
               createdAt: data.createdAt,
-              gameName: data.gameName,
+            //   gameName: data.gameName,
               // gameName: data.eliGame,
               // partTeams: {
               //   create: {
@@ -22,7 +22,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               // }
             },
         }).then(data => res.status(200).json(data));
+        return
     } else {
-        res.status(404).json("could not create tournament")
+        return res.status(404).json("could not create tournament")
     }
 }

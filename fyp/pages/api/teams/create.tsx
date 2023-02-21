@@ -8,11 +8,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log(data)
         const newTeam = await prisma.team.create({
             data: {
-              name: data.name,
-
+            name: data.name,
             },
         }).then(data => res.status(200).json(data));
+        return
     } else {
-        res.status(404).json("could not create team")
+        return res.status(404).json("could not create team")
     }
 }

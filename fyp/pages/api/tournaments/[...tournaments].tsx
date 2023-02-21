@@ -14,6 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           id: Number(id)
         }
       }).then(data => res.status(200).json(data))
+      return
     }
 
     if (req.method === 'POST') {
@@ -35,13 +36,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             update: {},
             where: { name: data.tourName },
         }).then(data => res.status(200).json(data));
+        return
     }
 
     else {
-        res.status(404).json("not auth")
+        return res.status(404).json("not auth")
     }
 }
-
-    // else {
-    //     res.status(404).json("not auth")
-    // }

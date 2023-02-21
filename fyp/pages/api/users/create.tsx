@@ -13,7 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               password: data.password
             },
         }).then(data => res.status(200).json(data));
+        return
     } else {
-        res.status(404).json("could not create user")
+        return res.status(404).json("could not create user")
     }
 }

@@ -1,0 +1,17 @@
+{
+    "workbench.colorTheme": "Monokai Dimmed",
+    "workbench.preferredDarkColorTheme": "Monokai Dimmed",
+    "todo-tree.highlights.useColourScheme": true,
+    "editor.foldingHighlight": true,
+    "editor.guides.highlightActiveBracketPair": false,
+    "editor.guides.highlightActiveIndentation": false,
+    "editor.occurrencesHighlight": true,
+    "editor.selectionHighlight": true,
+    "gitlens.blame.highlight.enabled": true,
+    "gitlens.graph.highlightRowsOnRefHover": true,
+    "color-highlight.enable": true,
+    "editor.renderLineHighlightOnlyWhenFocus": true,
+    "cSpell.words": [
+        "Terescenco"
+    ]
+}

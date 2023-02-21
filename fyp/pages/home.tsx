@@ -6,11 +6,20 @@ import Menu from '../components/menu'
 import TournamentCard from '../components/tournamentCard'
 import Head from 'next/head'
 import PlayerCard from '../components/playerCard'
+import TournamentList from '../components/tournamentList'
+import useSWR	from 'swr';
 
-const tourCardList = [1, 2, 3]
 const teamCardList = [1, 2, 3, 4, 5, 6]
 
+const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
+
 export default function Home() {
+
+		const { data, error } = useSWR('/api/home/recommend', fetcher);
+		
+		if (error) return <div>Failed to load</div>
+		if (!data) return <div>Loading...</div>
+		
 		return (
 			<>
 				<Head>
@@ -25,9 +34,10 @@ export default function Home() {
 					<div className={`${styles.containerItem} ${styles.containerItem4}`}>
 						<h2>Featured Tournaments</h2>
 							<div className={styles.cardRow}>
-							{
+								<TournamentList tournaments={data.foundTours}/>
+							{/* {
 								tourCardList.map(() => <TournamentCard key={""}/>)
-							}
+							} */}
 							</div>
 					</div>
 

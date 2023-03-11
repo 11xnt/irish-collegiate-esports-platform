@@ -42,11 +42,10 @@ export default function UserForm() {
 	}
 
     return (
-        <div className={styles.card}>
-						{formSuc ? <h1>Success</h1> :
-						<form action={`/api/users/create`} method="POST" onSubmit={handleSubmit}>
-
-                <label htmlFor="name">Game Name:</label>
+      <div className={styles.card}>
+			  {formSuc ? <h1>Success</h1> :
+				  <form action={`/api/users/create`} method="POST" onSubmit={handleSubmit}>
+                <label htmlFor="name">User Name:</label>
                 <input type="text" id="name" name="name" value={name} onChange={handleChange}/>
                 <br/>
 
@@ -60,8 +59,8 @@ export default function UserForm() {
 
                 <button type="submit">Submit</button>
                 <br/>
-            </form>
-						}
+          </form>
+			  }
         </div>
     )
 }

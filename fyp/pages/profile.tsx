@@ -1,15 +1,24 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Menu from '../components/menu'
-import TournamentCard from '../components/tournamentCard'
-import PlayerCard from '../components/playerCard'
+import TeamList from '../components/teamList'
+import useSWR	from 'swr';
 
 const inter = Inter({ subsets: ['latin'] })
 
+
+const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
+
 export default function Profile() {
+
+  const { data, error } = useSWR('/api/home/recommend', fetcher);
+
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
+
   return (
     <>
       <Head>
@@ -47,10 +56,7 @@ export default function Profile() {
         <div className={`${styles.containerItem} ${styles.containerItem3}`}>
             <h2>Teams</h2>
             <div className={styles.cardRow}>
-              <PlayerCard/>
-              <PlayerCard/>
-              <PlayerCard/>
-              <PlayerCard/>
+              <TeamList teams={data.foundTeams}/>
             </div>
         </div>
       </div>

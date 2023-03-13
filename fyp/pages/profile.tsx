@@ -8,7 +8,6 @@ import useSWR	from 'swr';
 
 const inter = Inter({ subsets: ['latin'] })
 
-
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
 export default function Profile() {

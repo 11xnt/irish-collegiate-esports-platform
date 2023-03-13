@@ -7,7 +7,7 @@ const playerId = '/profiles/1'
 
 export default function PlayerCard({player}: any) {
     return (
-      <Link href={playerId}>
+    <Link href={playerId}>
         <div className={styles.pCard}>
             <div style={{ position: 'sticky', width: '75%', height: '50%' }}>
                 <Image src="/images/default_player.png" fill
@@ -21,6 +21,6 @@ export default function PlayerCard({player}: any) {
                 <h5><u>View Profile</u></h5>
             </div>
         </div>
-			</Link>
+	</Link>
     )
 }

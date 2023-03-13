@@ -5,9 +5,10 @@ import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import Menu from '../components/menu'
 import Home from './home'
+import SignInPage from './signInPage'
 import React from 'react'
 import UserForm from '../components/forms/user'
-import { useSession, signIn, signOut } from "next-auth/react
+import { useSession, signIn, signOut } from "next-auth/react"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -66,7 +67,7 @@ export default function Index() {
   // )
 
   const { data: session, status } = useSession()
-  const userEmail = session?.user.email
+  const userEmail = session?.user?.email
 
   if (status === "loading") {
     return <p>Hang on there...</p>
@@ -74,18 +75,11 @@ export default function Index() {
 
   if (status === "authenticated") {
     return (
-      <>
-        <p>Signed in as {userEmail}</p>
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
+        <Home/>
+    )
+  } else {
+    return (
+      <SignInPage/>
     )
   }
-
-  return (
-    <>
-      <p>Not signed in.</p>
-      <button onClick={() => signIn("github")}>Sign in</button>
-    </>
-  )
-
 }

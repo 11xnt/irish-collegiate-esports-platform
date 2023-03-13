@@ -10,6 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       Int
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model Tournament {
   id        Int      @id @default(autoincrement())
   name      String   @unique
@@ -43,7 +51,7 @@ model Team {
   players  Player[]
   captain  Player       @relation(fields: [captainId], references: [id], "Captain")
   captainId Int
-  university University[]
+  institute Institute[]
 }
 
 model Game {
@@ -55,6 +63,7 @@ model Game {
 
 model User {
   id        Int      @id @default(autoincrement())
+  username  String   @unique
   firstName      String
   lastName       String
   email     String   @unique
@@ -66,6 +75,7 @@ model User {
   friends   User[] @relation("friendOf")
   friendOf User[] @relation("friendOf")
   gameAccounts Account[]
+  sessions      Session[]
   createdAt DateTime @default(now())
 }
 
@@ -95,8 +105,8 @@ model Player {
   user   User @relation(fields: [userID], references: [id])
   userID Int  @unique
   teams  Team[]
-  university University @relation(fields: [universityId], references: [id])
-  universityId Int
+  institute Institute @relation(fields: [instituteId], references: [id])
+  instituteId Int
   captainOf  Team[]  @relation("Captain")
 
 }
@@ -108,11 +118,11 @@ model Admin {
 
 }
 
-model University {
+model Institute {
   id     Int  @id @default(autoincrement())
   name   String
   domain String
-  discord String
+  // discord String
   abbreviation String
 
   players Player[]

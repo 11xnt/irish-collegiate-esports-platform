@@ -10,6 +10,7 @@ import TournamentForm from '../components/forms/tournament'
 import TeamForm from '../components/forms/team'
 import GameForm from '../components/forms/game'
 import UserForm from '../components/forms/user'
+import InstituteForm from '../components/forms/institute'
 
 
 export default function Admin() {
@@ -45,6 +46,11 @@ export default function Admin() {
 					<div className={`${styles.containerItem} ${styles.containerItem3}`}>
 						<h2>Insert Game</h2>
 						<GameForm/>
+					</div>
+
+					<div className={`${styles.containerItem} ${styles.containerItem3}`}>
+						<h2>Insert Institute</h2>
+						<InstituteForm/>
 					</div>
 				</div>
 				</main>

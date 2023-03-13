@@ -6,17 +6,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
         const data = req.body
         console.log(data)
-        const newUser = await prisma.user.create({
+        const newInstitute = await prisma.institute.create({
             data: {
-              username: data.username,
-              firstName: data.firstName,
-              lastName: data.lastName,
-              email: data.email,
-              password: data.password
+              name: data.name,
+              abbreviation: data.abbrev,
+              domain: data.domain
             },
         }).then(data => res.status(200).json(data));
         return
     } else {
-        return res.status(404).json("could not create user")
+        return res.status(404).json("could not create institute")
     }
 }

@@ -37,12 +37,12 @@ export default NextAuth({
         
         console.log(credentials.password)
         console.log(user.password)
-        const hash = await bcrypt.hash(credentials.password, 10)
+        // const hash = await bcrypt.hash(credentials.password, 10)
 
 
         const passwordValid = await bcrypt.compare(
-          user.password,
-          hash
+          credentials.password,
+          user.password
         )
 
         if (!passwordValid) {

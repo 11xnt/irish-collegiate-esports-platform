@@ -7,7 +7,7 @@ import TournamentCard from '../components/tournamentCard'
 import Head from 'next/head'
 import PlayerCard from '../components/playerCard'
 import TournamentList from '../components/tournamentList'
-import useSWR	from 'swr';
+import useSWR from 'swr';
 
 const teamCardList = [1, 2, 3, 4, 5, 6]
 

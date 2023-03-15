@@ -13,5 +13,7 @@
     "editor.renderLineHighlightOnlyWhenFocus": true,
     "cSpell.words": [
         "Terescenco"
-    ]
+    ],
+    "WillLuke.nextjs.addTypesOnSave": true,
+    "WillLuke.nextjs.hasPrompted": true
 }

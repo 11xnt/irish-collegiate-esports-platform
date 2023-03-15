@@ -60,7 +60,7 @@ export default function SignInPage() {
         setPassword(inputVal)
     } else if (inputName === "player") {
       var foo = document.getElementById("player") as HTMLInputElement;
-        if(foo.checked) {
+        if(foo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .checked) {
           add(e.target.form, "institute", "institute")
         } else {
           remove(e.target.form, "institute")

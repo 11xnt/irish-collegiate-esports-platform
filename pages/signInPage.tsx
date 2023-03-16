@@ -13,36 +13,8 @@ import SignUpForm from '../components/forms/signUp'
 import SignInForm from '../components/forms/signIn'
 
 const inter = Inter({ subsets: ['latin'] })
-export default function SignInPage() {
+export default function SignInPage(props) {
 
-<<<<<<< HEAD:pages/signInPage.tsx
-  const [name, setName] = React.useState("")
-  const [email, setEmail] = React.useState("")
-  const [password, setPassword] = React.useState("")
-  const [player, setPlayer] = React.useState(false)
-
-  const handleChange = (e: React.ChangeEvent<any>) => {
-    const inputName = e.target.name
-    const inputVal = e.target.value
-
-    if (inputName === "name") {
-        setName(inputVal)
-    } else if (inputName === "email") {
-        setEmail(inputVal)
-    } else if (inputName === "password") {
-        setPassword(inputVal)
-    } else if (inputName === "player") {
-      var foo = document.getElementById("player") as HTMLInputElement;
-        if(foo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .checked) {
-          add(e.target.form, "institute", "institute")
-        } else {
-          remove(e.target.form, "institute")
-        }
-    }
-  }
-
-=======
->>>>>>> 9865af38c4f0332e6efdcceb723e2207d5d930bc:fyp/pages/signInPage.tsx
     return (
       <>
       <Head>

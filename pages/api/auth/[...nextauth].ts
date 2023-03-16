@@ -53,13 +53,13 @@ export default NextAuth({
       }
     }),
   ],
-  database: process.env.DATABASE_URL,
-  session: {
-    jwt: true
-  },
-  jwt: {
-    secret: process.env.JWT_SECRET
-  }
+  // database: process.env.DATABASE_URL,
+  // session: {
+  //   jwt: true
+  // },
+  // jwt: {
+  //   secret: process.env.JWT_SECRET
+  // }
 })
 
         // const isValidPassword = await bcrypt.compare(credentials.password, user.password);

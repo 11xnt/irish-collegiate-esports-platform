@@ -10,7 +10,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: isProd ? 'https://irishcollegiateesports.azurewebsites.net/api/:path*' : undefined,
+        destination: isProd ? 'https://irishcollegiateesports.azurewebsites.net/:path*' : undefined,
       },
     ]
   },

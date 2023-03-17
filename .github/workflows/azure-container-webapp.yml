@@ -42,17 +42,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Log in to GitHub container registry
-        uses: azure/docker-login@v1
-        with:
+    - name: Log in to GitHub container registry
+    - uses: azure/docker-login@v1
+      with:
           login-server: irishesportscontainerregistry.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       
-      - name: Build and push container image to registry
-      - run: |
+    - name: Build and push container image to registry
+    - run: |
           docker build . -t irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
           docker push irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
         

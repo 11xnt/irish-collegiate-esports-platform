@@ -13,10 +13,7 @@ const prisma = new PrismaClient()
 export default NextAuth({
   // adapter: PrismaAdapter(prisma),
   providers: [
-    // GithubProvider({
-    //   clientId: process.env.GITHUB_ID,
-    //   clientSecret: process.env.GITHUB_SECRET,
-    // }),
+
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -24,7 +21,6 @@ export default NextAuth({
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        // Your authentication logic goes here
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
@@ -34,10 +30,6 @@ export default NextAuth({
         if (!user) {
           throw new Error("Can't find email or password")
         }
-        
-        console.log(credentials.password)
-        console.log(user.password)
-        // const hash = await bcrypt.hash(credentials.password, 10)
 
 
         const passwordValid = await bcrypt.compare(
@@ -53,6 +45,7 @@ export default NextAuth({
       }
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   // database: process.env.DATABASE_URL,
   // session: {
   //   jwt: true

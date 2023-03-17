@@ -2,3 +2,7 @@ references for fyp:
 https://nvd.codes/post/add-styling-to-an-active-link-in-nextjs/
 https://www.w3schools.com/howto/howto_css_cards.asp
 https://stackoverflow.com/questions/68721497/how-to-use-next-js-image-inside-material-ui-card-media
+
+https://github.com/vercel/next.js/tree/canary/examples/with-docker
+https://learn.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-docker-node/tutorial-vscode-docker-node-01?tabs=bash
+https://learn.microsoft.com/en-us/answers/questions/880541/azure-web-app-deployment-with-port-binding

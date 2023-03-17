@@ -27,7 +27,7 @@ export default function SignInPage(props) {
         <div className={styles.credCenter}>
           <div className={styles.credCard}>
             <div>
-              <h1>Sign in hi</h1>
+              <h1>Sign in</h1>
               <SignInForm/>
               <br/>
               <h2>Or</h2>

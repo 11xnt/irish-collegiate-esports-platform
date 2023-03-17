@@ -6,14 +6,14 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
   assetPrefix: isProd ? 'https://irishcollegiateesports.azurewebsites.net/' : undefined,
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: isProd ? 'https://irishcollegiateesports.azurewebsites.net/:path*' : undefined,
-      },
-    ]
-  },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: isProd ? 'https://irishcollegiateesports.azurewebsites.net/:path*' : undefined,
+  //     },
+  //   ]
+  // },
   async headers() {
     return [
       {

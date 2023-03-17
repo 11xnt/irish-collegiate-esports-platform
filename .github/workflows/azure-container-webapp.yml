@@ -24,18 +24,9 @@
 # For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
-name: Build and deploy a container to an Azure Web App
+name: Linux Container Node Workflow
 
-env:
-  AZURE_WEBAPP_NAME: irishcollegiateesports  # set this to the name of your Azure Web App
-
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
+on: [push]
 
 jobs:
   build:
@@ -44,23 +35,59 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Log in to GitHub container registry
     - uses: azure/docker-login@v1
       with:
-          login-server: irishesportscontainerregistry.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-      
-    - name: Build and push container image to registry
+        login-server: irishesportscontainerregistry.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
     - run: |
-          docker build . -t irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
-          docker push irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
-        
-    - uses: docker/build-push-action@v2
+        docker build . -t irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
+        docker push irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
+
+    - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'irishcollegiateesports'
+        app-name: 'myapp'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         images: 'irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest'
+
+# name: Build and deploy a container to an Azure Web App
+
+# env:
+#   AZURE_WEBAPP_NAME: irishcollegiateesports  # set this to the name of your Azure Web App
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   workflow_dispatch:
+
+# permissions:
+#   contents: read
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Log in to GitHub container registry
+#     - uses: azure/docker-login@v1
+#       with:
+#           login-server: irishesportscontainerregistry.azurecr.io
+#           username: ${{ secrets.REGISTRY_USERNAME }}
+#           password: ${{ secrets.REGISTRY_PASSWORD }}
+      
+#     - name: Build and push container image to registry
+#     - run: |
+#           docker build . -t irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
+#           docker push irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
+        
+#     - uses: docker/build-push-action@v2
+#       with:
+#         app-name: 'irishcollegiateesports'
+#         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+#         images: 'irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest'
 
 #   deploy:
 #     permissions:

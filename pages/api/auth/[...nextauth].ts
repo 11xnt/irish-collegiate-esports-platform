@@ -45,7 +45,26 @@ export default NextAuth({
       }
     }),
   ],
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      return true
+    },
+    async redirect({ url, baseUrl }) {
+      return baseUrl
+    },
+    async session({ session, user, token }) {
+      return session
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (account) {
+        // token.accessToken = account.access_token
+        // token.id = profile.id
+      }
+      return token
+    }
+  },
   secret: process.env.NEXTAUTH_SECRET,
+
   // database: process.env.DATABASE_URL,
   // session: {
   //   jwt: true

@@ -5,15 +5,19 @@ const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  assetPrefix: isProd ? 'https://irishcollegiateesports.azurewebsites.net/' : undefined,
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: isProd ? 'https://irishcollegiateesports.azurewebsites.net/:path*' : undefined,
-      },
-    ]
-  },
+//   env: {
+//     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+//     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+// },
+  // assetPrefix: isProd ? 'https://irishcollegiateesports.azurewebsites.net/' : undefined,
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: isProd ? 'https://irishcollegiateesports.azurewebsites.net/:path*' : undefined,
+  //     },
+  //   ]
+  // },
   // async headers() {
   //   return [
   //     {

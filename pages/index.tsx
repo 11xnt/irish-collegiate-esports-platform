@@ -12,7 +12,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Index() {
+export default function Index(props) {
 
   // const [password, setPassword] = React.useState("");
 	// const [email, setEmail] = React.useState("");
@@ -73,7 +73,7 @@ export default function Index() {
     return <p>Hang on there...</p>
   }
 
-  if (status === "authenticated") {
+  if (session) {
     return (
         <Home/>
     )

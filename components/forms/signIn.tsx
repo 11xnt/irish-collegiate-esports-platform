@@ -19,8 +19,6 @@ export default function SignInForm() {
     const result = await signIn('credentials', { email, password})
     if (result.error) {
         console.log(result.error)
-    } else {
-        window.location.href = '/'
     }
         // const dataJSON = JSON.stringify(data)
         // // const data2 = JSON.parse(data)*/

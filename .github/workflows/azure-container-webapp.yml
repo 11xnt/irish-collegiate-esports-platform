@@ -41,15 +41,17 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - run: |
-        docker build . -t irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
-        docker push irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
+#     - run: |
+#         docker build . -t irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
+#         docker push irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest
 
-    - uses: azure/webapps-deploy@v2
+    - uses: docker/build-push-action@v2
       with:
-        app-name: 'irishcollegiateesports'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: 'irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest'
+        push: true
+        tags: 'irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest'
+        file: ./Dockerfile
+#         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+#         images: 'irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest'
 
 # name: Build and deploy a container to an Azure Web App
 

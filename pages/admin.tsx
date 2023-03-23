@@ -11,9 +11,24 @@ import TeamForm from '../components/forms/team'
 import GameForm from '../components/forms/game'
 import UserForm from '../components/forms/user'
 import InstituteForm from '../components/forms/institute'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 
-export default function Admin() {
+export default function Admin(props) {
+
+	const router = useRouter()
+  const { data: session, status } = useSession()
+
+  useEffect(()=>{
+    if(status !== "loading"){
+      if (status === "authenticated") {
+        router.push('/teams')
+      }else{
+        router.push('/')
+      }
+  }},[router,session])
 
 		return (
 			<>

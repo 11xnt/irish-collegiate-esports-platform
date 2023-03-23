@@ -9,14 +9,29 @@ import PlayerCard from '../../components/playerCard'
 import TeamCard from '../../components/teamCard'
 import { PrismaClient } from '@prisma/client'
 import useSWR  from 'swr';
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
-export default function Profile({id}: any) {
-
+export default function Profile({id}) {
   id = 1
+  const router = useRouter()
+  const { data: session, status } = useSession()
+
+  useEffect(()=>{
+    if(status !== "loading"){
+      if (status === "authenticated") {
+        router.push(`/teams/${id}`)
+      }else{
+        router.push('/')
+      }
+  }},[router,session])
+
+
   const { data, error } = useSWR(`/api/teams/${id}`, fetcher)
 
   if (error) return <div>Failed to load</div>

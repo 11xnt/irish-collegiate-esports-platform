@@ -5,16 +5,31 @@ import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
 import TeamCard from '../../components/teamCard'
 import useSWR  from 'swr';
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
-export default function Tournament() {
+export default function Tournament(props) {
   // id = 1
   const router = useRouter()
+  const { data: session, status } = useSession()
   const id = router.query.id as string
+
+  useEffect(()=>{
+    if(status !== "loading"){
+      if (status === "authenticated") {
+        router.push(`/tournaments/${id}`)
+      }else{
+        router.push('/')
+      }
+  }},[router,session])
+
+
+  
 
   const { data, error } = useSWR(`/api/tournaments/${id}`, fetcher)
 

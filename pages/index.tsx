@@ -73,9 +73,9 @@ export default function Index(props) {
     return <p>Hang on there...</p>
   }
 
-  if (session) {
+  if (status === "authenticated") {
     return (
-        <Home/>
+      <Home/>
     )
   } else {
     return (

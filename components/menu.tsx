@@ -23,7 +23,8 @@ export default function Menu() {
                         currentRoute === page.href || currentRoute === page.href2
                         ? styles.active
                         : styles.menuItem
-                    }`} href={page.href}>
+                    }`} 
+                    href={page.href}>
                     {page.name}
                 </Link>
                 ))

@@ -6,3 +6,5 @@ https://stackoverflow.com/questions/68721497/how-to-use-next-js-image-inside-mat
 https://github.com/vercel/next.js/tree/canary/examples/with-docker
 https://learn.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-docker-node/tutorial-vscode-docker-node-01?tabs=bash
 https://learn.microsoft.com/en-us/answers/questions/880541/azure-web-app-deployment-with-port-binding
+https://stackoverflow.com/questions/73343986/next-js-abort-fetching-component-for-route-login
+https://nextjs.org/docs/advanced-features/custom-error-page#404-page

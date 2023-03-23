@@ -16,19 +16,19 @@ const teamCardList = [1, 2, 3, 4, 5, 6]
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
 export default function Home(props) {
-	
-		const { data: session, status } = useSession()
 
-		const { data, error } = useSWR('/api/home/recommend', fetcher);
-		
-		if (error) return <div>Failed to load</div>
-		if (!data) return <div>Loading...</div>
+		const { data: session, status } = useSession()
 
 		if (status === "loading") {
 			return <p>Hang on there...</p>
 		}
-		
+
 		if (status === "authenticated") {
+			const { data, error } = useSWR('/api/home/recommend', fetcher);
+
+			if (error) return <div>Failed to load</div>
+			if (!data) return <div>Loading...</div>
+
 			return (
 				<>
 					<Head>

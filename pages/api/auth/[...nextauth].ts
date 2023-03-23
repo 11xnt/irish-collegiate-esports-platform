@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { PrismaClient } from "@prisma/client"
@@ -10,7 +10,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter"
 const prisma = new PrismaClient()
 
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   // adapter: PrismaAdapter(prisma),
   providers: [
 
@@ -72,7 +72,7 @@ export default NextAuth({
   // jwt: {
   //   secret: process.env.JWT_SECRET
   // }
-})
+}
 
         // const isValidPassword = await bcrypt.compare(credentials.password, user.password);
 
@@ -107,3 +107,5 @@ export default NextAuth({
   // },
 // }),
 // })
+
+export default NextAuth(authOptions)

@@ -30,7 +30,7 @@ RUN \
   fi
 
 COPY prisma ./prisma/
-# COPY .env ./
+COPY .env ./
 
 
 # Rebuild the source code only when needed

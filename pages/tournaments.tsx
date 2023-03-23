@@ -10,7 +10,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import SignInPage from './signInPage'
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
@@ -19,24 +19,29 @@ export default function Tournaments(props) {
 
   const router = useRouter()
   const { data: session, status } = useSession()
+  const [calledPush, setCalledPush] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
       if (status === "authenticated") {
-        router.push('/tournaments')
+        if(calledPush) return
+        else{
+          router.push('/tournaments')
+          setCalledPush(true)
+        }
       }else{
         router.push('/')
+        setCalledPush(true)
       }
   }},[router,session])
-
-  const { data, error } = useSWR('/api/home/recommend', fetcher);
-
-  if (error) return <div>Failed to load</div>
-  if (!data) return <div>Loading...</div>
 
 
 
   if (status === "authenticated") {
+    const { data, error } = useSWR('/api/home/recommend', fetcher);
+
+    if (error) return <div>Failed to load</div>
+    if (!data) return <div>Loading...</div>
     return (
       <>
         <Head>

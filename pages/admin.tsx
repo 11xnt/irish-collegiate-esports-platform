@@ -20,16 +20,22 @@ export default function Admin(props) {
 
 	const router = useRouter()
   const { data: session, status } = useSession()
+	const [calledPush, setCalledPush] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
       if (status === "authenticated") {
-        router.push('/teams')
+				if(calledPush) return
+        else{
+					router.push('/admin')
+					setCalledPush(true)
+				}
       }else{
         router.push('/')
+				setCalledPush(true)
       }
   }},[router,session])
-
+	if (status === "authenticated") {
 		return (
 			<>
 				<Head>
@@ -72,3 +78,4 @@ export default function Admin(props) {
 			</>
 		)
 	}
+}

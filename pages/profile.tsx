@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css'
 import Menu from '../components/menu'
 import TeamList from '../components/teamList'
 import useSWR	from 'swr';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
@@ -17,13 +17,19 @@ export default function Profile(props) {
 
   const router = useRouter()
   const { data: session, status } = useSession()
+  const [calledPush, setCalledPush] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
       if (status === "authenticated") {
-        router.push('/teams')
+        if(calledPush) return
+        else{
+          router.push('/profile')
+          setCalledPush(true)
+        }
       }else{
         router.push('/')
+        setCalledPush(true)
       }
   }},[router,session])
 

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { NextApiRequest, NextApiResponse } from "next"
 import { customAlphabet } from "nanoid"
-import { APIApplicationCommandInteraction, APIEmbed, APIInteractionResponse } from "discord-api-types/v8"
+import { APIApplicationCommandInteraction, APIEmbed, APIInteractionResponse } from "discord-api-types/v10"
 import withDiscordInteraction from '../../middlewares/discord-interactions'
 import withErrorHandler from "../../middlewares/error-handler"
 import { PrismaClient } from "@prisma/client";

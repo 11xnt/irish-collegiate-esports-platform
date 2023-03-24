@@ -1,8 +1,9 @@
-import { APIApplicationCommandInteraction } from "discord-api-types/v8"
-import { DiscordInteractionApiHandler } from "interfaces/discord"
+import { APIApplicationCommandInteraction } from "discord-api-types/v10"
 import { NextApiRequest, NextApiResponse } from "next"
 import nacl from "tweetnacl"
-import { parseRawBodyAsString } from "utils/body-parser"
+import { DiscordInteractionApiHandler } from "../interfaces/discord"
+import { parseRawBodyAsString } from "../utils/body-parser"
+
 
 // Your public key can be found on your application in the Developer Portal
 const DISCORD_APP_PUBLIC_KEY = process.env.DISCORD_APP_PUBLIC_KEY

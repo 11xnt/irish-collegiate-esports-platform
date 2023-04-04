@@ -8,3 +8,4 @@ https://learn.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-v
 https://learn.microsoft.com/en-us/answers/questions/880541/azure-web-app-deployment-with-port-binding
 https://stackoverflow.com/questions/73343986/next-js-abort-fetching-component-for-route-login
 https://nextjs.org/docs/advanced-features/custom-error-page#404-page
+https://stackoverflow.com/questions/56577201/why-is-isolatedmodules-error-fixed-by-any-import

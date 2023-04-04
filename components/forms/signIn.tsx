@@ -44,18 +44,16 @@ const handleChange = (e: React.ChangeEvent<any>) => {
   }
 
 return (
-<form action={`/api/users/create`} method="POST" onSubmit={handleSubmit} key={"signIn"}>
-                <label htmlFor="email">Email: </label>
-                <input type="email" id="email" name="email" value={email} onChange={handleChange}/>
-                <br/>
+    <form action={`/api/auth/callback/credentials`} method="POST" onSubmit={handleSubmit} key={"signIn"}>
+        <label htmlFor="email">Email: </label>
+        <input type="email" id="email" name="email" value={email} onChange={handleChange}/>
+        <br/>
 
-                <label htmlFor="password">Password: </label>
-                <input type="password" id="password" name="password" value={password} onChange={handleChange}/>
-                <br/>
+        <label htmlFor="password">Password: </label>
+        <input type="password" id="password" name="password" value={password} onChange={handleChange}/>
+        <br/>
 
-                <button id="submit" type="submit">Submit</button>
-                <br/>
-              </form>
-
-            )}
-            
+        <button id="submit" type="submit">Submit</button>
+        <br/>
+    </form>
+)}

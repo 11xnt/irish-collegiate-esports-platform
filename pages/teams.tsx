@@ -22,6 +22,7 @@ export default function Teams(props) {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [calledPush, setCalledPush] = useState(false)
+  const [foundTeams, setFoundTeams] = useState([])
 
   useEffect(()=>{
     if(status !== "loading"){
@@ -33,16 +34,14 @@ export default function Teams(props) {
         }
       }else{
         router.push('/')
-        setCalledPush(true)
+        return setCalledPush(true)
       }
   }},[router,session])
 
+  const { data, error } = useSWR('/api/home/recommend', fetcher);
 
-  if (status === "authenticated") {
-    const { data, error } = useSWR('/api/home/recommend', fetcher);
-
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
 
     return (
       <>
@@ -59,12 +58,14 @@ export default function Teams(props) {
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
               <div className={styles.cardRow}>
-                <TeamList teams={data.foundTeams}/>
+                {
+                  data.foundTeams > 0 ? <TeamList teams={data.foundTeams}/> : <h2>No Teams Found</h2>
+                }
               </div>
           </div>
         </div>
         </main>
       </>
     )
-  }
 }
+

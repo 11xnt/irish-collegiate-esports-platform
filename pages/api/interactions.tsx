@@ -4,7 +4,7 @@ import { customAlphabet } from "nanoid"
 import { APIApplicationCommandInteraction, APIEmbed, APIInteractionResponse } from "discord-api-types/v10"
 import withDiscordInteraction from '../../middlewares/discord-interactions'
 import withErrorHandler from "../../middlewares/error-handler"
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client"
 
 const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz-", 16)
 const prisma = new PrismaClient();

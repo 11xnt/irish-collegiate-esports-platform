@@ -8,7 +8,7 @@ const prisma = new PrismaClient()
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const session = await getServerSession(req, res, authOptions)
     // const parsed = JSON.parse(req.body)
-    if (session) {
+    // if (session) {
         if (req.method === 'POST') {
             const data = req.body
             console.log(data)
@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         } else {
             return res.status(404).json("could not create user")
         }
-    } else {
-        return res.status(403).json("Access denied.")
-    }
+    // } else {
+    //     return res.status(403).json("Access denied.")
+    // }
 }

@@ -38,7 +38,6 @@ export default function SignInPage(props) {
               {/* <button onClick={() => signIn("github")}>Sign in</button> */}
 
             </div>
-            
             <div>
               <h1>Sign up</h1>
               <SignUpForm/>

@@ -7,7 +7,7 @@ import TeamList from '../components/teamList'
 import useSWR	from 'swr';
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,20 +27,20 @@ export default function Profile(props) {
           router.push('/profile')
           setCalledPush(true)
         }
-      }else{
+      } else{
         router.push('/')
         setCalledPush(true)
       }
-  }},[router,session])
+  }},[router, session])
 
-  if (status === "authenticated") {
-    const { data, error } = useSWR('/api/home/recommend', fetcher);
+  const { data, error } = useSWR('/api/home/recommend', fetcher);
+  if(!data) return <div>Loading...</div>
+  if(error) return <div>Failed to load</div>
 
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+  if (typeof window !== "undefined" && status !== "authenticated") return null;
 
-
-    return (
+  if(data) {
+  return (
       <>
         <Head>
           <title>Profile Page</title>
@@ -68,7 +68,12 @@ export default function Profile(props) {
           <div className={`${styles.containerItem} ${styles.containerItem2}`}>
             <h2>Game Accounts</h2>
             <div className={styles.gameAccounts}>
-                  <h2 className={styles.gameAccountItem}>Steam</h2>
+                  <div className={styles.gameAccountItem}>
+                    <button
+                      onClick={() => {signIn('discord');}}
+                      disabled={"discord" in session.user ? true : false}
+                    >Connect{"discord" in session.user ? "ed" : ""} to Discord</button>
+                    </div>
                   <h2 className={styles.gameAccountItem}>Steam</h2>
                   <h2 className={styles.gameAccountItem}>Steam</h2>
                   <h2 className={styles.gameAccountItem}>Epic Games</h2>
@@ -77,7 +82,9 @@ export default function Profile(props) {
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
               <div className={styles.cardRow}>
-                <TeamList teams={data.foundTeams}/>
+                {
+                  data.foundTeams > 0 ? <TeamList teams={data.foundTeams}/> : <h2>No Teams Found</h2>
+                }
               </div>
           </div>
         </div>
@@ -86,3 +93,4 @@ export default function Profile(props) {
     )
   }
 }
+

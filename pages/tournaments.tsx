@@ -37,11 +37,12 @@ export default function Tournaments(props) {
 
 
 
-  if (status === "authenticated") {
     const { data, error } = useSWR('/api/home/recommend', fetcher);
 
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
+    
+    if (data) {
     return (
       <>
         <Head>
@@ -57,7 +58,9 @@ export default function Tournaments(props) {
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Tournaments</h2>
               <div className={styles.cardRow}>
-                  <TournamentList tournaments={data.foundTours}/>
+                {
+                  data.foundTours > 0 ? <TournamentList tournaments={data.foundTours}/> : <h2>No Tournaments Found</h2>
+                }
               </div>
           </div>
         </div>

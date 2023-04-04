@@ -10,6 +10,8 @@ import TournamentList from '../components/tournamentList'
 import useSWR from 'swr';
 import { useSession, signIn, signOut } from "next-auth/react"
 import SignInPage from './signInPage'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const teamCardList = [1, 2, 3, 4, 5, 6]
 
@@ -17,7 +19,23 @@ const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json()
 
 export default function Home(props) {
 
-		const { data: session, status } = useSession()
+	// const router = useRouter()
+  const { data: session, status } = useSession()
+	// const [calledPush, setCalledPush] = useState(false)
+
+		// useEffect(()=>{
+		// 	if(status !== "loading"){
+		// 		if (status === "authenticated") {
+		// 			if(calledPush) return
+		// 			else{
+		// 				router.push('/')
+		// 				setCalledPush(true)
+		// 			}
+		// 		} else{
+		// 			router.push('/')
+		// 			setCalledPush(true)
+		// 		}
+		// }},[router,session])
 
 		if (status === "loading") {
 			return <p>Hang on there...</p>
@@ -43,7 +61,10 @@ export default function Home(props) {
 						<div className={`${styles.containerItem} ${styles.containerItem4}`}>
 							<h2>Featured Tournaments</h2>
 								<div className={styles.cardRow}>
-									<TournamentList tournaments={data.foundTours}/>
+									{
+										data.foundTours > 0 ? data.foundTours.map((tour) => <TournamentCard key={tour._id} tour={tour}/>) : <h3>No featured tournaments found</h3>
+									}
+									{/* <TournamentList tournaments={data.foundTours}/> */}
 								{/* {
 									tourCardList.map(() => <TournamentCard key={""}/>)
 								} */}
@@ -54,7 +75,7 @@ export default function Home(props) {
 							<h2>Recommended Players</h2>
 								<div className={styles.cardRow}>
 								{
-									teamCardList.map(() => <PlayerCard key={""}/>)
+									data.foundTeams > 0 ? teamCardList.map(() => <PlayerCard key={""}/>) : <h3>No recommended players found</h3>
 								}
 								</div>
 						</div>
@@ -69,4 +90,4 @@ export default function Home(props) {
 				<SignInPage/>
 			</>
 		)
-	}
+}

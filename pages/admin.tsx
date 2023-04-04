@@ -35,8 +35,8 @@ export default function Admin(props) {
 				setCalledPush(true)
       }
   }},[router,session])
-	if (status === "authenticated") {
-		return (
+
+	return (
 			<>
 				<Head>
 					<title>Admin Page</title>
@@ -77,5 +77,4 @@ export default function Admin(props) {
 				</main>
 			</>
 		)
-	}
 }

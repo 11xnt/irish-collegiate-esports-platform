@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
       clientId: `tenant=boxyhq.com&product=${
         process.env.BOXYHQ_PRODUCT || "saml-demo.boxyhq.com"
       }`,
-      clientSecret: "dummy",
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
     }),
     CredentialsProvider({
       name: 'Credentials',

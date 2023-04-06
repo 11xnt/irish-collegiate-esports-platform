@@ -10,8 +10,6 @@ import jwt from 'jsonwebtoken';
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import prisma from "../../../lib/prisma"
-import { identityProvider } from "../../../lib/identityProvider";
-import { serviceProvider } from "../../../lib/serviceProvider";
 
 const samlLoginUrl =
   process.env.BOXYHQ_SAML_JACKSON_URL || "https://jackson-demo.boxyhq.com"

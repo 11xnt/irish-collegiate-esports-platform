@@ -79,7 +79,7 @@ export default function Profile(props) {
                     </div>
                   <div className={styles.gameAccountItem}>
                     <button
-                      onClick={() => {signIn('boxyhq-saml');}}
+                      onClick={() => {signIn('boxyhq-saml', {callbackUrl: "/profile"} );}}
                       disabled={"student" in session.user ? true : false}
                     >Connect{"student" in session.user ? "ed" : ""} Student Email</button>
                   {/* Connect{"boxyhq-saml" in session.student ? "ed" : ""}  */}

@@ -9,6 +9,7 @@ declare module "next-auth" {
       email: string;
       image: string;
       discord: string;
+      student: string;
     }
   }
 

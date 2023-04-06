@@ -18,6 +18,9 @@ export default function Profile(props) {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [calledPush, setCalledPush] = useState(false)
+  // const email = "jackson@mail.wit.ie"
+  // const tenant = email.split('@')[1]
+  // const product = 'my_awesome_product'
 
   useEffect(()=>{
     if(status !== "loading"){
@@ -74,7 +77,13 @@ export default function Profile(props) {
                       disabled={"discord" in session.user ? true : false}
                     >Connect{"discord" in session.user ? "ed" : ""} to Discord</button>
                     </div>
-                  <h2 className={styles.gameAccountItem}>Steam</h2>
+                  <div className={styles.gameAccountItem}>
+                    <button
+                      onClick={() => {signIn('boxyhq-saml');}}
+                      disabled={"student" in session.user ? true : false}
+                    >Connect{"student" in session.user ? "ed" : ""} Student Email</button>
+                  {/* Connect{"boxyhq-saml" in session.student ? "ed" : ""}  */}
+                  </div>
                   <h2 className={styles.gameAccountItem}>Steam</h2>
                   <h2 className={styles.gameAccountItem}>Epic Games</h2>
             </div>

@@ -2,16 +2,31 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import DiscordProvider from "next-auth/providers/discord";
 import CredentialsProvider from "next-auth/providers/credentials"
+import BoxyHQSAMLProvider from "next-auth/providers/boxyhq-saml"
+import Providers from "next-auth/providers";
 import type { NextApiRequest, NextApiResponse } from 'next'
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import prisma from "../../../lib/prisma"
+import { identityProvider } from "../../../lib/identityProvider";
+import { serviceProvider } from "../../../lib/serviceProvider";
+
+const samlLoginUrl =
+  process.env.BOXYHQ_SAML_JACKSON_URL || "https://jackson-demo.boxyhq.com"
 
 // const prisma = new PrismaClient()
 export const authOptions: NextAuthOptions = {
   providers: [
+    BoxyHQSAMLProvider({
+      authorization: { params: { scope: "" } },
+      issuer: samlLoginUrl,
+      clientId: `tenant=boxyhq.com&product=${
+        process.env.BOXYHQ_PRODUCT || "saml-demo.boxyhq.com"
+      }`,
+      clientSecret: "dummy",
+    }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -86,6 +101,10 @@ export const authOptions: NextAuthOptions = {
 
       customSession.user.discord = getUser.accounts.filter((account) => {
         return account.provider === "discord";
+      })[0]?.providerAccountId;
+
+      customSession.user.student = getUser.accounts.filter((account) => {
+        return account.provider === "boxyhq-saml";
       })[0]?.providerAccountId;
 
       token.user = customSession.user;

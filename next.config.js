@@ -5,6 +5,8 @@ const isProd = process.env.NODE_ENV === 'production'
 const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
+  defaultRedirectUrl: 'https://irishcollegiateesports.azurewebsites.net/*',
+  redirectUrl: '["https://irishcollegiateesports.azurewebsites.net/*"]',
 //   env: {
 //     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
 //     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,

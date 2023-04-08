@@ -1,6 +1,6 @@
 import React from "react"
 import { InferGetServerSidePropsType } from "next"
-import { getGlobalCommands } from "services/discord"
+import { getGlobalCommands } from "../../services/discord"
 //createGlobalCommand
 export const getServerSideProps = async () => {
     // await createGlobalCommand({

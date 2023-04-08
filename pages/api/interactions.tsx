@@ -78,9 +78,8 @@ const handler = async (
     switch (name) {
         case "verify" : {
             const foundAccount = await prisma.account.findUnique({
-                provider_providerAccountId: {
+                where: {
                     providerAccountId: discordId,
-                    provider: 'discord'
                 }
             })
             console.log(foundAccount)

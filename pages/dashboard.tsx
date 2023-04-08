@@ -28,7 +28,7 @@ export const getServerSideProps = async () => {
         name: "verify",
         description: "Finds a user in the database that is linked to your discord account",
         // @ts-ignore
-        type: "C:/Users/allen/WebstormProjects/fypdemo/fypdemo/node_modules/discord-api-types/payloads/v8/_interactions/applicationCommands".ChatInput,
+        type: "C:/Users/allen/WebstormProjects/fyp/node_modules/discord-api-types/payloads/v8/_interactions/applicationCommands".ChatInput,
         version: ""
     })
     try {

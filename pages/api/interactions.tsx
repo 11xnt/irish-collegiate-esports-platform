@@ -73,11 +73,13 @@ const handler = async (
         data: { name, options },
     } = interaction
 
+    let discordId = interaction.member.user.id.toString()
+
     switch (name) {
         case "verify" : {
             const foundAccount = await prisma.account.findUnique({
                 where: {
-                    providerAccountId: interaction.member.user.id
+                    providerAccountId: discordId
                 }
             })
             console.log(foundAccount)

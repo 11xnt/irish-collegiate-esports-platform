@@ -74,6 +74,26 @@ const handler = async (
     } = interaction
 
     switch (name) {
+        case "verify" : {
+            const foundAccount = await prisma.account.findUnique({
+                where: {
+                    provider: "discord",
+                    providerAccountId: interaction.member.user.id
+                }
+            })
+            console.log(foundAccount)
+
+            const foundUser = await prisma.user.findUnique({
+                where: {
+                    id: foundAccount.userId
+                }
+            })
+
+            console.log(foundUser)
+
+            // @ts-ignore
+            return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser) } })
+        }
         case "all" : {
             const foundUsers = await prisma.user.findMany()
             console.log(foundUsers)

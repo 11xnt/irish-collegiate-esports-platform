@@ -5,9 +5,12 @@ import { APIApplicationCommandInteraction, APIEmbed, APIInteractionResponse } fr
 import withDiscordInteraction from '../../middlewares/discord-interactions'
 import withErrorHandler from "../../middlewares/error-handler"
 import { PrismaClient } from "@prisma/client"
+// import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import prisma from "../../../lib/prisma"
 
 const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz-", 16)
-const prisma = new PrismaClient();
+// const prisma = PrismaAdapter(prisma);
+
 
 const BASE_RESPONSE = { type: 4 }
 const INVALID_COMMAND_RESPONSE = { ...BASE_RESPONSE, data: { content: "Oops! I don't recognize this command." } }
@@ -79,7 +82,10 @@ const handler = async (
         case "verify" : {
             const foundAccount = await prisma.account.findUnique({
                 where: {
-                    providerAccountId: discordId,
+                    provider_providerAccountId: {
+                        providerAccountId: discordId,
+                        provider: 'discord'
+                    }
                 }
             })
             console.log(foundAccount)

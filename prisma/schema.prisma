@@ -109,7 +109,6 @@ model Player {
   institute Institute @relation(fields: [instituteId], references: [id])
   instituteId Int
   captainOf  Team[]  @relation("Captain")
-
 }
 
 model Admin {
@@ -121,7 +120,7 @@ model Admin {
 
 model Institute {
   id     Int  @id @default(autoincrement())
-  name   String
+  name   String @unique
   domain String
   // discord String
   abbreviation String

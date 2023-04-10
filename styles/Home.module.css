@@ -281,6 +281,21 @@
   
 }
 
+.teamCard {
+  padding: 25px;
+  margin: 20px 5px 0px 5px;
+  width: 500px;
+  height: 100px;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+  background: rgba(var(--card-rgb), 0.1);
+  min-height: 100px;
+  min-width: 500px;
+  
+}
+
 .credCard {
   padding: 25px;
   width: 1000px;

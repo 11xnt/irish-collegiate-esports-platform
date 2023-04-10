@@ -11,17 +11,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (session) {
         if (req.method === 'POST') {
             const data = req.body
+            // const parsed = JSON.parse(data.name)
             console.log(data)
-            const newTeam = await prisma.team.create({
+            const newPlayer = await prisma.player.create({
                 data: {
-                    name: data.name,
-                    captain : data.user,
-                    players: [data.user]
+                    // name: data.institute,
+                    // captain : data.user,
+                    // players: [data.user]
+                    user: {
+                        connect: {
+                            email: data.email
+                        },
+                    },
+                    institute: {
+                        connect: {
+                            name: data.name
+                        },
+                    },
                 },
             }).then(data => res.status(200).json(data));
             return
         } else {
-            return res.status(404).json("could not create team")
+            return res.status(404).json("could not create player")
         }
     } else {
         return res.status(403).json("Access denied.")

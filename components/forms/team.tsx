@@ -2,17 +2,18 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
 import styles from '../../styles/Home.module.css'
+import { useSession, getSession } from "next-auth/react"
 
-export default function TeamForm() {
+export default function TeamForm({user}) {
 
   const [name, setName] = React.useState("")
-
 	const [formSuc, setFormSuc] = React.useState(false)
 
 	const handleSubmit = (e: React.ChangeEvent<any>) => {
 			e.preventDefault()
 			const data = {
           name: name,
+					user: user
       }
 			const dataJSON = JSON.stringify(data)
 			// const data2 = JSON.parse(data)*/
@@ -36,10 +37,10 @@ export default function TeamForm() {
 	}
 
     return (
-        <div className={styles.card}>
+        <div className={styles.teamCard}>
 						{formSuc ? <h1>Success</h1> :
 						<form action={`/api/teams/create`} method="POST" onSubmit={handleSubmit}>
-                <label htmlFor="name">Tournament Name:</label>
+                <label htmlFor="name">Team Name: </label>
                 <input type="text" id="name" name="name" value={name} onChange={handleChange}/>
                 <br/>
 

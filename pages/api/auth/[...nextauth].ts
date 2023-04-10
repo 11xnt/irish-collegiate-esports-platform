@@ -105,6 +105,8 @@ export const authOptions: NextAuthOptions = {
         return account.provider === "boxyhq-saml";
       })[0]?.providerAccountId;
 
+      // customSession.user.student.institute = "South East Technological University"
+
       token.user = customSession.user;
 
       return customSession

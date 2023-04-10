@@ -50,18 +50,18 @@ export default function Tournaments(props) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <main>
-        <Menu/>
+          <Menu/>
           <div className={styles.container}>
           {/* row */}
-          <div className={`${styles.containerItem} ${styles.containerItem3}`}>
-              <h2>Tournaments</h2>
-              <div className={styles.cardRow}>
-                {
-                  data.foundTours > 0 ? <TournamentList tournaments={data.foundTours}/> : <h2>No Tournaments Found</h2>
-                }
-              </div>
+            <div className={`${styles.containerItem} ${styles.containerItem3}`}>
+                <h2>Tournaments</h2>
+                <div className={styles.cardRow}>
+                  {
+                    data.foundTours > 0 ? <TournamentList tournaments={data.foundTours}/> : <h2>No Tournaments Found</h2>
+                  }
+                </div>
+            </div>
           </div>
-        </div>
         </main>
       </>
     )

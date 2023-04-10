@@ -11,7 +11,7 @@ import useSWR	from 'swr';
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-
+import TeamForm from '../components/forms/team'
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
@@ -23,6 +23,7 @@ export default function Teams(props) {
   const { data: session, status } = useSession()
   const [calledPush, setCalledPush] = useState(false)
   const [foundTeams, setFoundTeams] = useState([])
+  const [isDisplay, setDisplay] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
@@ -57,6 +58,8 @@ export default function Teams(props) {
           {/* row */}
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
+              <button onClick={() => setDisplay(!isDisplay)}>Create a team</button>
+              {isDisplay ? <TeamForm user={session.user}/> : null}
               <div className={styles.cardRow}>
                 {
                   data.foundTeams > 0 ? <TeamList teams={data.foundTeams}/> : <h2>No Teams Found</h2>

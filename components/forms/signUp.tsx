@@ -114,6 +114,7 @@ const handleChange = (e: React.ChangeEvent<any>) => {
 return (
   <div>
   {formSuc ?
+    
       <h1>Success</h1>:
       <form action={`/api/users/create`} method="POST" onSubmit={handleSubmit} key={"signUp"}>
                 <label htmlFor="username">Username: </label>

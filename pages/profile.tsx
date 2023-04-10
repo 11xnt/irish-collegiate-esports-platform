@@ -8,6 +8,7 @@ import useSWR	from 'swr';
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/react'
+import PlayerForm from '../components/forms/player'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +19,7 @@ export default function Profile(props) {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [calledPush, setCalledPush] = useState(false)
-  // const email = "jackson@mail.wit.ie"
-  // const tenant = email.split('@')[1]
-  // const product = 'my_awesome_product'
+  const [isDisplay, setDisplay] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
@@ -65,7 +64,12 @@ export default function Profile(props) {
                 <h3>Allen Terescenco</h3>
                 <h3>South East Technological University</h3>
                 <h3>Joined: 26/01/23</h3>
-                <h4>Verified</h4>
+                <h4>{"student" in session.user ? "Verified":""}</h4>
+              </div>
+              <br/><br/>
+              <div>
+                <button onClick={() => setDisplay(!isDisplay)}>Become a player</button>
+                {isDisplay ? <PlayerForm user={session.user.email}/> : null}
               </div>
           </div>
           <div className={`${styles.containerItem} ${styles.containerItem2}`}>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
+import { signOut, useSession } from 'next-auth/react'
 
 const pages = [
     { name: "Home", href: "/" },
@@ -29,6 +30,9 @@ export default function Menu() {
                 </Link>
                 ))
             }
+            <Link className={styles.menuItem2} href={''} onClick={() => {signOut()}}>
+                Sign Out
+            </Link>
         </div>
     )
 }

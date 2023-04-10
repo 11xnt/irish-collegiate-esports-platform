@@ -145,6 +145,16 @@
   border-right: 1px solid #bbb;
 }
 
+.menuItem2 {
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-left: 1px solid #bbb;
+}
+
 .active {
   float: left;
   display: block;

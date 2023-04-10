@@ -81,7 +81,7 @@ export default function PlayerForm({user}) {
 	// if (typeof window !== "undefined" && status !== "authenticated") return null;
 
 	if(data) {
-		function getInstitutes(data: any) {
+		const getInstitutes = (data: any) => {
 			// console.log(data[0])
 			return data.map((e) => {
 				return <option value={e.name}>{e.name}</option>

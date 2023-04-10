@@ -36,6 +36,12 @@ export default function Admin(props) {
       }
   }},[router,session])
 
+	if (typeof window !== "undefined" && status !== "authenticated") return null;
+
+	if (status === "loading") {
+		return <p>Hang on there...</p>
+	}
+	if (status === "authenticated") {
 	return (
 			<>
 				<Head>
@@ -77,4 +83,5 @@ export default function Admin(props) {
 				</main>
 			</>
 		)
+	}
 }

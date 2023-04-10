@@ -39,11 +39,11 @@ export default function Teams(props) {
       }
   }},[router,session])
 
-  const { data, error } = useSWR('/api/home/recommend', fetcher);
+  const { data, error } = useSWR('/api/teams/all', fetcher);
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
-
+  if(data) {
     return (
       <>
         <Head>
@@ -59,10 +59,10 @@ export default function Teams(props) {
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
               <button onClick={() => setDisplay(!isDisplay)}>Create a team</button>
-              {isDisplay ? <TeamForm user={session.user}/> : null}
+              {isDisplay ? <TeamForm user={session.user.email}/> : null}
               <div className={styles.cardRow}>
                 {
-                  data.foundTeams > 0 ? <TeamList teams={data.foundTeams}/> : <h2>No Teams Found</h2>
+                  data.length > 0 ? <TeamList teams={data}/> : <h2>No Teams Found</h2>
                 }
               </div>
           </div>
@@ -70,5 +70,6 @@ export default function Teams(props) {
         </main>
       </>
     )
+  }
 }
 

@@ -64,15 +64,15 @@ export default function SignUpForm() {
     const [password, setPassword] = React.useState("")
     // const [player, setPlayer] = React.useState(false)
     const [formSuc, setFormSuc] = React.useState(false)
-    
+
     const handleSubmit = (e: React.ChangeEvent<any>) => {
-        e.preventDefault()
-    const data = {
-      username: username,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
+      e.preventDefault()
+      const data = {
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
       }
         const dataJSON = JSON.stringify(data)
         // const data2 = JSON.parse(data)*/
@@ -112,7 +112,11 @@ const handleChange = (e: React.ChangeEvent<any>) => {
   }
 
 return (
-<form action={`/api/users/create`} method="POST" onSubmit={handleSubmit} key={"signUp"}>
+  <div>
+  {formSuc ?
+    
+      <h1>Success</h1>:
+      <form action={`/api/users/create`} method="POST" onSubmit={handleSubmit} key={"signUp"}>
                 <label htmlFor="username">Username: </label>
                 <input type="text" id="username" name="username" value={username} onChange={handleChange}/>
                 <br/>
@@ -145,5 +149,6 @@ return (
                 <br/>
               </form>
 
-            )}
-            
+          }
+          </div>
+)}

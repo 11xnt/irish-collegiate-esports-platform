@@ -34,7 +34,7 @@ export default function Profile(props) {
         setCalledPush(true)
       }
   }},[router, session])
-
+  
   const { data, error } = useSWR('/api/home/recommend', fetcher);
   if(!data) return <div>Loading...</div>
   if(error) return <div>Failed to load</div>

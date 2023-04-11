@@ -13,26 +13,29 @@ const pages = [
 export default function Menu() {
     const router = useRouter()
     const currentRoute = router.pathname
-    console.log(currentRoute)
+    // console.log(currentRoute)
 
     return (
         <div className={styles.menu}>
             {
                 pages.map((page) => (
-                    <Link key={page.name}
+                    <div key={page.name}
                     className={`${
                         currentRoute === page.href || currentRoute === page.href2
                         ? styles.active
                         : styles.menuItem
-                    }`} 
-                    href={page.href}>
+                    }`}
+                    onClick={() => router.push(page.href)}>
                     {page.name}
-                </Link>
+                </div>
                 ))
             }
-            <Link className={styles.menuItem2} href={''} onClick={() => {signOut()}}>
+            <div className={styles.menuItem2} href={''} onClick={() => {signOut()}}>
                 Sign Out
-            </Link>
+            </div>
+            <div className={styles.menuItem2} onClick={() => router.push('/organisers')}>
+                Become a tournament organiser
+            </div>
         </div>
     )
 }

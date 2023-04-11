@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function TournamentCard({tournament}: any) {
     return (
-        <Link href={`/tournaments/${tournament.id}`}>
+        <div onClick={() => router.push(`/tournaments/${tournament.id}`)}>
             <div className={styles.card}>
                 <div style={{ position: 'relative', width: '100%', height: '70%' }}>
                     <Image src="/images/default_player.png" fill
@@ -18,6 +18,6 @@ export default function TournamentCard({tournament}: any) {
                     <h5>Maximum Teams: { tournament.maxTeams }</h5>
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }

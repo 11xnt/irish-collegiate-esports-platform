@@ -9,14 +9,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const session = await getServerSession(req, res, authOptions)
   // const parsed = JSON.parse(req.body)
   if (session) {
-    const teamId = req.query.teams
-    // console.log(`${teamId}`)
-    // const id = teamId.slice(11)
+    const orgId = req.query.organisers
+    // console.log(orgId)
     if (req.method === 'GET') {
       // console.log(id)
-      const foundTeam = await prisma.team.findUnique({
+      const foundOrg = await prisma.tournamentOrganiser.findUnique({
         where: {
-          id: Number(teamId)
+          id: Number(orgId)
         }
       }).then(data => res.status(200).json(data))
       return

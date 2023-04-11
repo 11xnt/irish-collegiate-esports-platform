@@ -124,7 +124,6 @@ model Institute {
   domain String
   // discord String
   abbreviation String
-
   players Player[]
   teams Team[]
 }

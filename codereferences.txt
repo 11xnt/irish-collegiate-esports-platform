@@ -18,3 +18,4 @@ https://discord.com/developers/docs/interactions/application-commands#create-glo
 https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#findunique
 https://codeflarelimited.com/blog/dynamically-populate-select-options-in-react-js/
 https://stackoverflow.com/questions/66666983/calling-multiple-endpoints-using-nextjs-and-the-swr-library
+https://github.com/vercel/swr/issues/77

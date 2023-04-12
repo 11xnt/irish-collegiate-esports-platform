@@ -35,13 +35,14 @@ export default function Profile(props) {
       }
   }},[router, session])
 
-  const { data, error } = useSWR('/api/home/recommend', fetcher);
-  if(!data) return <div>Loading...</div>
-  if(error) return <div>Failed to load</div>
+  const { data: foundUser, error: userError } = useSWR(calledPush ? `/api/users/${session.user.id}/teams` : null, fetcher);
+  if(!foundUser) return <div>Loading...</div>
+  if(userError) return <div>Failed to load</div>
 
   if (typeof window !== "undefined" && status !== "authenticated") return null;
 
-  if(data) {
+  if(foundUser) {
+    console.log(foundUser)
   return (
       <>
         <Head>
@@ -60,10 +61,10 @@ export default function Profile(props) {
                       alt=''/>
               </div>
               <div className={styles.profileSummary}>
-                <h2>11xnt</h2>
-                <h3>Allen Terescenco</h3>
-                <h3>South East Technological University</h3>
-                <h3>Joined: 26/01/23</h3>
+                <h2>{foundUser.foundUser.username}</h2>
+                <h3>{foundUser.foundUser.firstName} {foundUser.foundUser.lastName}</h3>
+                <h3>{foundUser.player.institute.name}</h3>
+                <h3>Joined: {foundUser.foundUser.createdAt}</h3>
                 <h4>{"student" in session.user ? "Verified":""}</h4>
               </div>
               <br/><br/>
@@ -96,7 +97,7 @@ export default function Profile(props) {
               <h2>Teams</h2>
               <div className={styles.cardRow}>
                 {
-                  data.foundTeams > 0 ? <TeamList teams={data.foundTeams}/> : <h2>No Teams Found</h2>
+                  foundUser.player.teams.length > 0 ? <TeamList teams={foundUser.player.teams}/> : <h2>No Teams Found</h2>
                 }
               </div>
           </div>

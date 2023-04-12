@@ -37,10 +37,11 @@ export default function Home(props) {
 		// 		}
 		// }},[router,session])
 
+		const { data, error } = useSWR('/api/home/recommend', fetcher);
+
 		if (status === "loading") {
 			return <p>Hang on there...</p>
 		}
-		const { data, error } = useSWR('/api/home/recommend', fetcher);
 
 		if (error) return <div>Failed to load</div>
 		if (!data) return <div>Loading...</div>

@@ -22,7 +22,6 @@ export default function Teams(props) {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [calledPush, setCalledPush] = useState(false)
-  const [foundTeams, setFoundTeams] = useState([])
   const [isDisplay, setDisplay] = useState(false)
 
   useEffect(()=>{

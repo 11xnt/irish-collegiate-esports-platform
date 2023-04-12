@@ -110,14 +110,14 @@ export const authOptions: NextAuthOptions = {
 
       token.user = customSession.user;
 
-      return customSession
+      return Promise.resolve(customSession)
     },
     jwt({ token, account, user }) {
       if (account) {
         token.accessToken = account.access_token
         token.id = user?.id
       }
-      return token
+      return Promise.resolve(token);
     }
   },
 

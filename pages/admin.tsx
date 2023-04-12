@@ -67,7 +67,7 @@ export default function Admin(props) {
 					<div className={`${styles.containerItem} ${styles.containerItem3}`}>
 						<h2>Insert User</h2>
 						{/* {insert form} */}
-						<UserForm user={session.user.email}/>
+						<UserForm/>
 					</div>
 
 					<div className={`${styles.containerItem} ${styles.containerItem3}`}>

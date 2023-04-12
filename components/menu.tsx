@@ -30,7 +30,7 @@ export default function Menu() {
                 </div>
                 ))
             }
-            <div className={styles.menuItem2} href={''} onClick={() => {signOut()}}>
+            <div className={styles.menuItem2} onClick={() => {signOut()}}>
                 Sign Out
             </div>
             <div className={styles.menuItem2} onClick={() => router.push('/organisers')}>

@@ -2,7 +2,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from "@prisma/client"
 import { authOptions } from '../auth/[...nextauth]'
 import { getServerSession } from 'next-auth'
-const prisma = new PrismaClient()
+import prisma from '../../../lib/prisma'
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
@@ -14,17 +15,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const newTour = await prisma.tournament.create({
             data: {
               name: data.name,
-              organiser: data.organiser,
-              prizePool: parseInt(data.prizePool),
-              maxTeams: parseInt(data.maxTeams),
+              prizePool: Number(data.prizePool),
+              maxTeams: Number(data.maxTeams),
               createdAt: data.createdAt,
-            //   gameName: data.gameName,
-              // gameName: data.eliGame,
-              // partTeams: {
-              //   create: {
-              //     name: "SETU Val",
-              //   },
-              // }
+              minTeamSize: Number(data.minTeamSize),
+              maxTeamSize: Number(data.maxTeamSize),
+              eliGame: {
+                connect: {
+                  name: data.gameName,
+                },
+              },
+              organiser: {
+                connect: {
+                  name: data.organiser,
+                },
+              },
             },
         }).then(data => res.status(200).json(data));
         return

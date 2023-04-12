@@ -5,12 +5,13 @@ declare module "next-auth" {
   interface Session {
     /** This is an example. You can find me in types/next-auth.d.ts */
     user: {
+      id: string;
       name: string;
       email: string;
       image: string;
       discord: string;
       student: string;
-    }
+    } & DefaultSession['user'];
   }
 
 }

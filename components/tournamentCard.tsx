@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 export default function TournamentCard({tournament}: any) {
+    const router = useRouter()
     return (
         <div onClick={() => router.push(`/tournaments/${tournament.id}`)}>
             <div className={styles.card}>

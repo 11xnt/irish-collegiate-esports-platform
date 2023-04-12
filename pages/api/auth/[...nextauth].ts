@@ -88,6 +88,7 @@ export const authOptions: NextAuthOptions = {
           email: session.user.email,
         },
         select: {
+          id: true,
           accounts: {
             select: {
               provider: true,
@@ -105,18 +106,19 @@ export const authOptions: NextAuthOptions = {
         return account.provider === "boxyhq-saml";
       })[0]?.providerAccountId;
 
-      // customSession.user.student.institute = "South East Technological University"
+      customSession.user.id = getUser.id;
 
       token.user = customSession.user;
 
       return customSession
     },
-  //   jwt: ({token, user}) => {
-  //     if(user){
-  //       token.discord = user.discord;
-  //       }
-  //     return Promise.resolve(token)
-  // },
+    jwt({ token, account, user }) {
+      if (account) {
+        token.accessToken = account.access_token
+        token.id = user?.id
+      }
+      return token
+    }
   },
 
   // database: process.env.DATABASE_URL,

@@ -48,7 +48,7 @@ export default function OrganiserForm({user}) {
                 <input type="text" id="name" required name="name" value={name} onChange={handleChange}/>
                 <br/><br/>
 								<label htmlFor="name">Description: </label>
-                <textarea type="text" rows="4" cols="50" id="desc" name="desc" value={desc} onChange={handleChange}/>
+                <textarea type="text" rows={4} cols={50} id="desc" name="desc" value={desc} onChange={handleChange}/>
                 <br/>
 
                 <button type="submit">Submit</button>

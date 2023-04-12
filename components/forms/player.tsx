@@ -7,38 +7,6 @@ import useSWR	from 'swr';
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
-function add(theForm: any, key: any, value: any, institutes: any) {
-	console.log(institutes.foundInstitutes);
-	// Create a hidden input element, and append it to the form:
-	var br = document.createElement('br');
-	br.id = 'br2';
-
-
-	var label = document.createElement('label');
-	label.htmlFor = key;
-	label.innerHTML = "Institute: ";
-	label.id = "Institute2";
-	var input = document.createElement('select');
-	// input.type = 'hidden';
-	input.name = key; // 'the key/name of the attribute/field that is sent to the server
-	input.value = value;
-	input.id = key;
-
-	// institutes.map((institute: any) => {
-	//   var option = document.createElement('option');
-	//   option.value = institute.name;
-	//   option.innerHTML = institute.name;
-	//   input.appendChild(option);
-	// })
-
-	for(let i = 0; i < institutes.foundInstitutes.length; i++) {
-		var option = document.createElement('option');
-		option.value = institutes.foundInstitutes[i].name;
-		option.innerHTML = institutes.foundInstitutes[i].name;
-		input.options.add(option);
-	}
-}
-
 export default function PlayerForm({user}) {
 
   // const [institutes, setInstitutes] = React.useState([])

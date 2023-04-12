@@ -11,6 +11,8 @@ import SignInPage from './signInPage'
 import { redirect } from 'next/navigation';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import TournamentForm from '../components/forms/tournament'
+
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
@@ -20,6 +22,7 @@ export default function Tournaments(props) {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [calledPush, setCalledPush] = useState(false)
+  const [isDisplay, setDisplay] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
@@ -35,7 +38,7 @@ export default function Tournaments(props) {
       }
   }},[router,session])
 
-    const { data, error } = useSWR('/api/home/recommend', fetcher);
+    const { data, error } = useSWR('/api/tournaments/all', fetcher);
 
     if (error) return <div>Failed to load</div>
     if (!data) return <div>Loading...</div>
@@ -55,9 +58,11 @@ export default function Tournaments(props) {
           {/* row */}
             <div className={`${styles.containerItem} ${styles.containerItem3}`}>
                 <h2>Tournaments</h2>
+                <button onClick={() => setDisplay(!isDisplay)}>Create a Tournament</button>
+                {isDisplay ? <TournamentForm user={session.user.id}/> : null}
                 <div className={styles.cardRow}>
                   {
-                    data.foundTours > 0 ? <TournamentList tournaments={data.foundTours}/> : <h2>No Tournaments Found</h2>
+                    data.length > 0 ? <TournamentList tournaments={data}/> : <h2>No Tournaments Found</h2>
                   }
                 </div>
             </div>

@@ -5,7 +5,7 @@ import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
 import TeamCard from '../../components/teamCard'
 import useSWR  from 'swr';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
@@ -14,27 +14,33 @@ const inter = Inter({ subsets: ['latin'] })
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
 export default function Tournament(props) {
-  // id = 1
   const router = useRouter()
   const { data: session, status } = useSession()
   const id = router.query.id as string
+  const [calledPush, setCalledPush] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
       if (status === "authenticated") {
-        router.push(`/tournaments/${id}`)
+        if(calledPush) return
+        else {
+          router.push(`/tournaments/${id}`)
+          setCalledPush(true)
+        }
       }else{
         router.push('/')
+        return setCalledPush(true)
       }
   }},[router,session])
 
-  if (status === "authenticated") {
-    const { data, error } = useSWR(`/api/tournaments/${id}`, fetcher)
+  const { data, error } = useSWR(`/api/tournaments/${id}`, fetcher)
 
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
+  if (error) return <div>Failed to load</div>
+  if (!data) return <div>Loading...</div>
+
+  if (typeof window !== "undefined" && status !== "authenticated") return null;
+  if(data) {
     return (
-
       <>
         <Head>
           <title>Tournament Page</title>

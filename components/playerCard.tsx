@@ -2,10 +2,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
-const playerId = '/profiles/1'
+
 
 export default function PlayerCard({player}: any) {
+    const router = useRouter()
     return (
     <div onClick={() => router.push(`/profiles/${player.id}`)}>
         <div className={styles.pCard}>

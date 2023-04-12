@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (session) {
         const userId = req.query.users
         if (req.method === 'GET') {
-            if(req.query.users.size === 1) {
+            if(req.query.users.length === 1) {
                 const foundUser = await prisma.user.findUnique({
                     where: {
                         id: userId[0]

@@ -50,23 +50,16 @@ export default function PlayerForm({user}) {
 
 	if(data) {
 		const getInstitutes = (data: any) => {
-			// console.log(data[0])
 			return data.map((e) => {
 				return <option value={e.name}>{e.name}</option>
 			});
-			// for(let i = 0; i < data.length; i++) {
-			// 	return <option value={data[i.name]}>{data[i].name}</option>
-			// }
 		}
     return (
         <div className={styles.teamCard}>
 						{formSuc ? <h1>Success</h1> :
 						<form action={`/api/players/create`} method="POST" onSubmit={handleSubmit} key={"player"}>
                 <label htmlFor="name">Select Institute: </label>
-
-                <select
-								onChange={handleChange}
-									>
+                <select onChange={handleChange}>
 									<option value="b">Select Institute...</option>
 									{getInstitutes(data)}
 								</select>

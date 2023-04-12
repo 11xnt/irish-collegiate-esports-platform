@@ -55,7 +55,7 @@ export default function Admin(props) {
 				<div className={styles.container}>
 					<div className={`${styles.containerItem} ${styles.containerItem4}`}>
 						<h2>Add Tournament</h2>
-						<TournamentForm/>
+						<TournamentForm user={session.user.id}/>
 					</div>
 
 					<div className={`${styles.containerItem} ${styles.containerItem3}`}>
@@ -67,7 +67,7 @@ export default function Admin(props) {
 					<div className={`${styles.containerItem} ${styles.containerItem3}`}>
 						<h2>Insert User</h2>
 						{/* {insert form} */}
-						<UserForm/>
+						<UserForm user={session.user.email}/>
 					</div>
 
 					<div className={`${styles.containerItem} ${styles.containerItem3}`}>

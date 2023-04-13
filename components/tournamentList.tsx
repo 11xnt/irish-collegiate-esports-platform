@@ -3,9 +3,9 @@ import React from "react";
 import TournamentCard from "./tournamentCard";
 
 const TournamentList = ({tournaments}: any) => {
-    // const tournaments = props.props;
+  console.log(tournaments)
     let tournamentCards = tournaments.map((t: any) => (
-      <TournamentCard key={t.id} tournament={t} />
+      <TournamentCard key={t.id} id={t.id} name={t.name} organiser={t.organiser.name} gameName={t.gameName} prize={t.prizePool} maxTeams={t.maxTeams}/>
     ));
     return tournamentCards;
 };

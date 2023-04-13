@@ -42,7 +42,7 @@ export default function Profile(props) {
   if (typeof window !== "undefined" && status !== "authenticated") return null;
 
   if(foundUser) {
-    console.log(foundUser)
+    console.log(foundUser.player)
   return (
       <>
         <Head>
@@ -69,7 +69,7 @@ export default function Profile(props) {
               </div>
               <br/><br/>
               <div>
-                <button onClick={() => setDisplay(!isDisplay)}>Become a player</button>
+                {"student" in session.user && foundUser.player != null ? <button onClick={() => setDisplay(!isDisplay)}>Become a player</button> : null}
                 {isDisplay ? <PlayerForm user={session.user.email}/> : null}
               </div>
           </div>

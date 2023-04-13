@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // const parsed = JSON.parse(req.body)
     const session = await getServerSession(req, res, authOptions)
     // const parsed = JSON.parse(req.body)
-    
+
     if (session) {
         const userId = req.query.users
         console.log(userId)
@@ -41,9 +41,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         userId: foundUser.id
                     },
                     include: {
-                        teams: true,
+                        teams: {
+                            include: {
+                                players: true,
+                            },
+                        },
                         institute: true
-                    },
+                    }
                 })
 
                 return res.status(200).json({player: foundUserTeams, foundUser})

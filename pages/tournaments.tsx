@@ -44,6 +44,7 @@ export default function Tournaments(props) {
     if (!data) return <div>Loading...</div>
 
     if (data) {
+      console.log(data)
     return (
       <>
         <Head>

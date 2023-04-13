@@ -17,7 +17,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const foundTeam = await prisma.team.findUnique({
         where: {
           id: Number(teamId)
-        }
+        },
+
+        include: {
+          players: {
+            include: {
+              user: {
+                include: {
+                  playerID : {
+                    include: {
+                      institute: true
+                    },
+                  },
+                },
+              },
+            },
+          },
+          partTour: true,
+          captain: {
+            include: {
+              user: true
+            }
+          },
+      },
+
       }).then(data => res.status(200).json(data))
       return
 

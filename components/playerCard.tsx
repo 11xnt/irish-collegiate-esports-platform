@@ -6,18 +6,16 @@ import Image from 'next/image'
 export default function PlayerCard({player}: any) {
     const router = useRouter()
     return (
-    <div onClick={() => router.push(`/profiles/${player.id}`)}>
+    <div>
         <div className={styles.pCard}>
             <div style={{ position: 'sticky', width: '75%', height: '50%' }}>
                 <Image src="/images/default_player.png" fill
                 alt=''/>
             </div>
             <div className={styles.description}>
-                <h3><b>Allen Terescenco</b></h3>
-                <h4>11xnt</h4>
-                <h5>South East Technology University</h5>
-                <h5>CS:GO</h5>
-                <h5><u>View Profile</u></h5>
+                <h3><b>{player.user.username}</b></h3>
+                <h5>{player.user.playerID.institute.name}</h5>
+                <h5 onClick={() => router.push(`/profiles/${player.id}`)}><u>View Profile</u></h5>
             </div>
         </div>
 	</div>

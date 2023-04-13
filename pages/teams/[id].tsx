@@ -5,7 +5,7 @@ import { Inter } from '@next/font/google'
 import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
 import TournamentCard from '../../components/tournamentCard'
-import PlayerCard from '../../components/playerCard'
+import PlayerList from '../../components/playerList'
 import useSWR  from 'swr';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -42,6 +42,7 @@ export default function Team(props) {
 
   if (typeof window !== "undefined" && status !== "authenticated") return null;
   if(data) {
+    console.log(data)
     return (
       <>
         <Head>
@@ -61,28 +62,19 @@ export default function Team(props) {
               </div>
               <div className={styles.profileSummary}>
                 <h2>{data.name}</h2>
-                <h3>6 Members</h3>
-                <h3>Created: 26/01/23</h3>
+                <h3>{data.players.length} Members</h3>
+                <h3>Captain: {data.captain.user.username}</h3>
               </div>
           </div>
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Players</h2>
               <div className={styles.cardRow}>
-                {/* <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/> */}
+                {
+                  data.players.length > 0 ? <PlayerList players={data.players}/> : <h3>No players</h3>
+                }
               </div>
           </div>
-        </div>
+          </div>
         </main>
       </>
     )

@@ -40,6 +40,7 @@ export default function Tournament(props) {
 
   if (typeof window !== "undefined" && status !== "authenticated") return null;
   if(data) {
+    console.log(data)
     return (
       <>
         <Head>
@@ -58,26 +59,17 @@ export default function Tournament(props) {
                       alt=''/>
               </div>
               <div className={styles.profileSummary}>
-                <h2>{data.name}</h2>
-                <h3>{data.maxTeams} Teams</h3>
-                <h3>Created: {data.createdAt}</h3>
+                <h2><b>{data.name}</b></h2>
+                <h4>{data.maxTeams} Teams</h4>
+                <h4>Created: {data.createdAt}</h4>
               </div>
           </div>
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
               <div className={styles.cardRow}>
-                {/* <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/> */}
+                {
+                  data.partTeams.length > 0 ? <TeamList teams={data.teams}/> : <h4>No teams yet</h4>
+                }
               </div>
           </div>
         </div>

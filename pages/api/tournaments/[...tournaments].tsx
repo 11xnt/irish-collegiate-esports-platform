@@ -10,13 +10,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // const parsed = JSON.parse(req.body)
     if (session) {
       if (req.method === 'GET') {
-        const tourId = req.url
-        console.log(tourId)
-        const id = tourId?.slice(17)
-        // console.log(id)
+        const tourId = req.query.tournaments
         const foundTour = await prisma.tournament.findUnique({
           where: {
-            id: Number(id)
+            id: Number(tourId[0])
+          },
+          include: {
+            partTeams: true,
           }
         }).then(data => res.status(200).json(data))
         return
@@ -32,11 +32,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 prizePool: data.prizePool,
                 maxTeams: data.maxTeams,
                 eliGame: data.eliGame,
-                // partTeams: {
-                //   create: {
-                //     name: "SETU Val",
-                //   },
-                // }
               },
               update: {},
               where: { name: data.tourName },

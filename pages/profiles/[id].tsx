@@ -1,44 +1,47 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
-import TournamentCard from '../../components/tournamentCard'
-import PlayerCard from '../../components/playerCard'
-import TeamCard from '../../components/teamCard'
-import { PrismaClient } from '@prisma/client'
 import useSWR  from 'swr';
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import TeamList from '../../components/teamList'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
-export default function Profile({id}) {
-  id = 1
+export default function Profile() {
   const router = useRouter()
   const { data: session, status } = useSession()
+  const id = router.query.id as string
+  const [calledPush, setCalledPush] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
       if (status === "authenticated") {
-        router.push(`/teams/${id}`)
+        if(calledPush) return
+        else {
+          router.push(`/profiles/${id}`)
+          setCalledPush(true)
+        }
       }else{
         router.push('/')
+        return setCalledPush(true)
       }
   }},[router,session])
 
+  const { data: foundPlayer, error: playerError } = useSWR(calledPush ? `/api/players/${id}/teams` : null, fetcher);
+  if(!foundPlayer) return <div>Loading...</div>
+  if(playerError) return <div>Failed to load</div>
 
-  if (status === "authenticated") {
-    const { data, error } = useSWR(`/api/teams/${id}`, fetcher)
+  if (typeof window !== "undefined" && status !== "authenticated") return null;
 
-    if (error) return <div>Failed to load</div>
-    if (!data) return <div>Loading...</div>
-
-    return (
+  if(foundPlayer) {
+    console.log(foundPlayer)
+  return (
       <>
         <Head>
           <title>Profile Page</title>
@@ -56,18 +59,21 @@ export default function Profile({id}) {
                       alt=''/>
               </div>
               <div className={styles.profileSummary}>
-                <h2>11xnt</h2>
-                <h3>Allen Terescenco</h3>
-                <h3>South East Technological University</h3>
-                <h3>Joined: 26/01/23</h3>
-                <h4>Verified</h4>
+                <h2>{foundPlayer.user.username}</h2>
+                <h3>{foundPlayer.user.firstName} {foundPlayer.user.lastName}</h3>
+                <h3>{foundPlayer.institute.name}</h3>
+                <h3>Joined: {foundPlayer.user.createdAt}</h3>
+                <h4>{foundPlayer != null ? "Verified":""}</h4>
               </div>
+              <br/><br/>
           </div>
           <div className={`${styles.containerItem} ${styles.containerItem2}`}>
             <h2>Game Accounts</h2>
             <div className={styles.gameAccounts}>
-                  <h2 className={styles.gameAccountItem}>Steam</h2>
-                  <h2 className={styles.gameAccountItem}>Steam</h2>
+                  <div className={styles.gameAccountItem}>
+                    </div>
+                  <div className={styles.gameAccountItem}>
+                  </div>
                   <h2 className={styles.gameAccountItem}>Steam</h2>
                   <h2 className={styles.gameAccountItem}>Epic Games</h2>
             </div>
@@ -75,10 +81,9 @@ export default function Profile({id}) {
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
               <div className={styles.cardRow}>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
-                <TeamCard/>
+                {
+                  foundPlayer.teams.length > 0 ? <TeamList teams={foundPlayer.teams}/> : <h2>No Teams Found</h2>
+                }
               </div>
           </div>
         </div>
@@ -87,3 +92,4 @@ export default function Profile({id}) {
     )
   }
 }
+

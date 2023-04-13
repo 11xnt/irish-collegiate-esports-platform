@@ -17,8 +17,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     where: {
                         id: userId[0]
                     }
-                }).then(data => res.status(200).json(data))
+                }).then(data => res.status(200).json({foundUser: data}))
                 return
+
             } else if(req.query.users[1] === "orgs") {
                 const foundOrgs = await prisma.user.findUnique({
                     where: {

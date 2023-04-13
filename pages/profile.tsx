@@ -69,7 +69,7 @@ export default function Profile(props) {
               </div>
               <br/><br/>
               <div>
-                {"student" in session.user && foundUser.player != null ? <button onClick={() => setDisplay(!isDisplay)}>Become a player</button> : null}
+                {"student" in session.user && foundUser.player == null ? <button onClick={() => setDisplay(!isDisplay)}>Become a player</button> : null}
                 {isDisplay ? <PlayerForm user={session.user.email}/> : null}
               </div>
           </div>

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../../styles/Home.module.css'
 import Menu from '../../components/menu'
-import TeamCard from '../../components/teamCard'
+import TeamList from '../../components/teamList'
 import useSWR  from 'swr';
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'

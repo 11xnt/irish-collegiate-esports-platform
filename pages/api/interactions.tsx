@@ -51,12 +51,13 @@ const handler = async (
                 }
             })
 
-            if(foundUser) {
+            if(foundUser !== null) {
                 // @ts-ignore
                 return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser.username) } })
             } else {
                 // @ts-ignore
-                return res.status(200).json({ ...BASE_RESPONSE, data: { content: "User not found" } })
+                return res.status(200).json({ ...BASE_RESPONSE, data: {
+                    content: "User not found. Please sign up at: https://irish-collegiate-esports.azurewebsites.net and connect your Discord account." } })
             }
         }
         case "ping": {

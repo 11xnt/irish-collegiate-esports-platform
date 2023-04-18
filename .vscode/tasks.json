@@ -9,7 +9,7 @@
 				"dockerfile": "${workspaceFolder}/Dockerfile",
 				"context": "${workspaceFolder}",
 				"pull": true,
-				"tag": "irishesportscontainerregistry.azurecr.io/irishcollegiateesportswebapp:latest"
+				"tag": "irishcollegiate.azurecr.io/irishcollegiateesportswebapp:latest"
 			}
 		},
 		{

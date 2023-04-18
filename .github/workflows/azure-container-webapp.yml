@@ -58,13 +58,13 @@ jobs:
         tags: 'irishcollegiate.azurecr.io/irishcollegiateesportswebapp:latest'
         file: ./Dockerfile
 
-  deploy:
-    runs-on: ubuntu-latest
+  # deploy:
+  #   runs-on: ubuntu-latest
 
-    needs: build
-    steps:
-      - name: Deploy to Azure Web App
-        run: curl ${{ secrets.AZURE_WEBHOOK }}
+  #   needs: build
+  #   steps:
+  #     - name: Deploy to Azure Web App
+  #       run: ${{ secrets.AZURE_WEBHOOK }}
 
 
 # name: Linux Container Node Workflow

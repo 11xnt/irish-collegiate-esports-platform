@@ -45,7 +45,7 @@ const handleChange = (e: React.ChangeEvent<any>) => {
 
 return (
     <form action={`/api/auth/callback/credentials`} method="POST" onSubmit={handleSubmit} key={"signIn"}>
-        <label htmlFor="email">Email: </label>
+        <label htmlFor="email">Email2: </label>
         <input type="email" id="email" name="email" value={email} onChange={handleChange}/>
         <br/>
 

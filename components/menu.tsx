@@ -38,6 +38,12 @@ export default function Menu() {
             <div className={styles.menuItem2} onClick={() => router.push('/organisers')}>
                 Become a tournament organiser
             </div>
+            <div className={styles.menuItem2}
+                onClick={() => window.open(
+                    "https://discord.com/oauth2/authorize?client_id=1058056500309921903&permissions=268438528&redirect_uri=https%3A%2F%2Firish-collegiate-esports.azurewebsites.net%2Fapi%2Fauth%2Fcallback%2Fdiscord&response_type=code&scope=bot%20guilds"
+                )}>
+                Add Discord Bot
+            </div>
         </div>
     )
 }

@@ -19,3 +19,4 @@ https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#findu
 https://codeflarelimited.com/blog/dynamically-populate-select-options-in-react-js/
 https://stackoverflow.com/questions/66666983/calling-multiple-endpoints-using-nextjs-and-the-swr-library
 https://github.com/vercel/swr/issues/77
+https://learn.microsoft.com/en-us/azure/app-service/deploy-ci-cd-custom-container?tabs=acr&pivots=container-linux

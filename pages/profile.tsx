@@ -42,7 +42,6 @@ export default function Profile(props) {
   if (typeof window !== "undefined" && status !== "authenticated") return null;
 
   if(foundUser) {
-    console.log(foundUser.player)
   return (
       <>
         <Head>
@@ -63,7 +62,7 @@ export default function Profile(props) {
               <div className={styles.profileSummary}>
                 <h2>{foundUser.foundUser.username}</h2>
                 <h3>{foundUser.foundUser.firstName} {foundUser.foundUser.lastName}</h3>
-                <h3>{foundUser.player.institute.name}</h3>
+                <h3>{foundUser.player === null ? "" : foundUser.player.institute} </h3>
                 <h3>Joined: {foundUser.foundUser.createdAt}</h3>
                 <h4>{"student" in session.user ? "Verified":""}</h4>
               </div>
@@ -87,20 +86,21 @@ export default function Profile(props) {
                       onClick={() => {signIn('boxyhq-saml', {callbackUrl: "/profile"} );}}
                       disabled={"student" in session.user ? true : false}
                     >Connect{"student" in session.user ? "ed" : ""} Student Email</button>
-                  {/* Connect{"boxyhq-saml" in session.student ? "ed" : ""}  */}
                   </div>
                   <h2 className={styles.gameAccountItem}>Steam</h2>
                   <h2 className={styles.gameAccountItem}>Epic Games</h2>
             </div>
           </div>
+          { foundUser.player !== null ?
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
-              <div className={styles.cardRow}>
-                {
-                  foundUser.player.teams.length > 0 ? <TeamList teams={foundUser.player.teams}/> : <h2>No Teams Found</h2>
-                }
-              </div>
+                <div className={styles.cardRow}>
+                  {
+                    foundUser.player.teams.length > 0 ? <TeamList teams={foundUser.player.teams}/> : <h2>No Teams Found</h2>
+                  }
+                </div>
           </div>
+          : null}
         </div>
         </main>
       </>

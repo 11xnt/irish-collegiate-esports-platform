@@ -88,7 +88,6 @@ const handler = async (
                     }
                 }
             })
-            console.log(foundAccount)
 
             const foundUser = await prisma.user.findUnique({
                 where: {
@@ -96,32 +95,13 @@ const handler = async (
                 }
             })
 
-            console.log(foundUser)
-
             // @ts-ignore
-            return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser) } })
-        }
-        case "all" : {
-            const foundUsers = await prisma.user.findMany()
-            console.log(foundUsers)
-            // @ts-ignore
-            return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUsers) } })
+            return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser.username) } })
         }
         case "ping": {
             // @ts-ignore
             return res.status(200).json({ ...BASE_RESPONSE, data: { content: "Pong"} })
         }
-        case "randompic":
-            if (!options) {
-                throw new Error()
-            }
-            return res.status(200).json({
-                type: 4,
-                data: {
-                    // @ts-ignore
-                    embeds: [await getEmbed(options[0].value)],
-                },
-            })
 
         default:
             return res.status(200).json(INVALID_COMMAND_RESPONSE)

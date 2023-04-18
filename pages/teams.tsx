@@ -57,7 +57,7 @@ export default function Teams(props) {
           {/* row */}
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
-              <button onClick={() => setDisplay(!isDisplay)}>Create a team</button>
+              {"student" in session.user ? <button onClick={() => setDisplay(!isDisplay)}>Create a team</button> : null}
               {isDisplay ? <TeamForm user={session.user.email}/> : null}
               <div className={styles.cardRow}>
                 {

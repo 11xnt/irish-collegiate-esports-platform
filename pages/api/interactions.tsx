@@ -36,7 +36,7 @@ const handler = async (
 
     switch (name) {
         case "verify" : {
-            const foundAccount = await prisma.account.findUnique({
+            const foundAccount = await prisma.account.findUniqueOrThrow({
                 where: {
                     provider_providerAccountId: {
                         providerAccountId: discordId,
@@ -44,12 +44,14 @@ const handler = async (
                     }
                 }
             })
+            console.log(foundAccount)
 
             const foundUser = await prisma.user.findUnique({
                 where: {
                     id: foundAccount.userId
                 }
             })
+            console.log(foundUser)
 
             if(foundAccount !== null || foundUser !== null) {
                 // @ts-ignore
@@ -57,7 +59,8 @@ const handler = async (
             } else {
                 // @ts-ignore
                 return res.status(200).json({ ...BASE_RESPONSE, data: {
-                    content: "User not found. Please sign up at: https://irish-collegiate-esports.azurewebsites.net and connect your Discord account." } })
+                    content: "User not found. Please sign up at: https://irish-collegiate-esports.azurewebsites.net and connect your Discord account." }
+                })
             }
         }
         case "ping": {

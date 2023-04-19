@@ -36,7 +36,7 @@ const handler = async (
 
     switch (name) {
         case "verify" : {
-            const foundAccount = await prisma.account.findUniqueOrThrow({
+            const foundAccount = await prisma.account.findUnique({
                 where: {
                     provider_providerAccountId: {
                         providerAccountId: discordId,
@@ -49,13 +49,16 @@ const handler = async (
             const foundUser = await prisma.user.findUnique({
                 where: {
                     id: foundAccount.userId
-                }
+                },
+                select: {
+                    username: true
+                },
             })
             console.log(foundUser)
 
-            if(foundAccount !== null || foundUser !== null) {
+            if(foundAccount !== null && foundUser !== null) {
                 // @ts-ignore
-                return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser.username) } })
+                return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser) } })
             } else {
                 // @ts-ignore
                 return res.status(200).json({ ...BASE_RESPONSE, data: {

@@ -51,7 +51,7 @@ const handler = async (
                 }
             })
 
-            if(foundUser !== null) {
+            if(foundAccount !== null || foundUser !== null) {
                 // @ts-ignore
                 return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser.username) } })
             } else {

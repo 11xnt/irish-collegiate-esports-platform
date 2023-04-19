@@ -44,26 +44,22 @@ const handler = async (
                     }
                 }
             })
-            console.log(foundAccount)
 
-            const foundUser = await prisma.user.findUnique({
-                where: {
-                    id: foundAccount.userId
-                },
-                select: {
-                    username: true
-                },
-            })
-            console.log(foundUser)
-
-            if(foundAccount !== null && foundUser !== null) {
-                // @ts-ignore
-                return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser) } })
-            } else {
+            if(foundAccount === null) {
                 // @ts-ignore
                 return res.status(200).json({ ...BASE_RESPONSE, data: {
                     content: "User not found. Please sign up at: https://irish-collegiate-esports.azurewebsites.net and connect your Discord account." }
                 })
+            } else {
+                const foundUser = await prisma.user.findUnique({
+                    where: {
+                        id: foundAccount.userId
+                    },
+                    select: {
+                        username: true
+                    },
+                })
+                return res.status(200).json({ ...BASE_RESPONSE, data: { content: JSON.stringify(foundUser.username) } })
             }
         }
         case "ping": {

@@ -41,7 +41,7 @@ export default function Admin(props) {
 	if (status === "loading") {
 		return <p>Hang on there...</p>
 	}
-	if (status === "authenticated") {
+	if (status === "authenticated" && session?.user.role === "admin") {
 	return (
 			<>
 				<Head>
@@ -83,5 +83,7 @@ export default function Admin(props) {
 				</main>
 			</>
 		)
+	} else {
+		router.push('/')
 	}
 }

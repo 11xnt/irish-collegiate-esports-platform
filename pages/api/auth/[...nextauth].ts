@@ -89,6 +89,7 @@ export const authOptions: NextAuthOptions = {
         },
         select: {
           id: true,
+          role: true,
           accounts: {
             select: {
               provider: true,
@@ -106,16 +107,19 @@ export const authOptions: NextAuthOptions = {
         return account.provider === "boxyhq-saml";
       })[0]?.providerAccountId;
 
+      customSession.user.role = getUser.role;
       customSession.user.id = getUser.id;
 
       token.user = customSession.user;
 
       return Promise.resolve(customSession)
     },
+
     jwt({ token, account, user }) {
       if (account) {
         token.accessToken = account.access_token
         token.id = user?.id
+        token.role = user?.role
       }
       return Promise.resolve(token);
     }

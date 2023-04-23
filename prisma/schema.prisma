@@ -70,7 +70,7 @@ model User {
   password  String
   passwordSalt String @default("")
   playerID  Player?
-  adminID   Admin?
+  role     String?
   adminFor TournamentOrganiser[] @relation("Admin")
   ownerOf  TournamentOrganiser[] @relation("Owner")
   friends   User[] @relation("friendOf")
@@ -109,13 +109,6 @@ model Player {
   institute Institute @relation(fields: [instituteId], references: [id])
   instituteId Int
   captainOf  Team[]  @relation("Captain")
-}
-
-model Admin {
-  id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userID], references: [id], onDelete: Cascade)
-  userID String  @unique
-
 }
 
 model Institute {

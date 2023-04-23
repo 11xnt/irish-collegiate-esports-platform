@@ -24,6 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 email: data.email,
                 password: hashedPassword,
                 passwordSalt: salt,
+                role: "user",
                 },
             }).then(data => res.status(200).json(data));
             return

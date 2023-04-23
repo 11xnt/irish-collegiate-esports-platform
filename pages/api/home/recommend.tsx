@@ -6,13 +6,6 @@ import { authOptions } from '../auth/[...nextauth]';
 const prisma = new PrismaClient()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
-    // await NextCors(req, res, {
-    //     // Options
-    //     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-    //     origin: '*',
-    //     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    //     });
     const session = await getServerSession(req, res, authOptions)
     // const parsed = JSON.parse(req.body)
     if (session) {
@@ -20,13 +13,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             const foundTours = await prisma.tournament.findMany({
                 take: 3,
+                include: {
+                    organiser: true
+                }
             })
 
             const foundTeams = await prisma.team.findMany({
                 take: 6,
             })
 
-            return res.status(200).json({foundTours: foundTours, foundTeams: foundTeams})
+            console.log(foundTours)
+            console.log(foundTeams)
+
+            return res.status(200).json({foundTours, foundTeams})
 
         } else {
             res.status(404).json("could not find teams or tournaments")

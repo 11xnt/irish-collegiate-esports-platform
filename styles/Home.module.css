@@ -17,20 +17,20 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  background-color: #333;
   align-content: space-between;
   margin: 10rem 15rem 10rem 15rem;
   min-width: 500px;
   min-height: 1200px;
+  border-radius: var(--border-radius);
+  background: rgba(var(--card-rgb), 0);
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
+  background: rgba(var(--card-rgb), 0.1);
 }
 
 
 .container::-webkit-scrollbar {
   display: none;
-}
-
-.containerItem {
-  background-color: cadetblue;
 }
 
 .containerItem1 {
@@ -278,7 +278,7 @@
   background: rgba(var(--card-rgb), 0.1);
   min-height: 400px;
   min-width: 500px;
-  
+
 }
 
 .teamCard {
@@ -461,6 +461,11 @@
   }
 
   .pCard:hover {
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  }
+
+  .container:hover {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
   }

@@ -34,9 +34,7 @@ export default function SignInPage(props) {
               <br/>
 
               <h2>Sign In with Connected Accounts</h2>
-              {/* Add connected account login */}
-              {/* <button onClick={() => signIn("github")}>Sign in</button> */}
-
+              <button onClick={() => signIn("discord")}>Discord</button>
             </div>
             <div>
               <h1>Sign up</h1>

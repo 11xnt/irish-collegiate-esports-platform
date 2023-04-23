@@ -73,7 +73,7 @@ export default function Profile(props) {
               </div>
           </div>
           <div className={`${styles.containerItem} ${styles.containerItem2}`}>
-            <h2>Game Accounts</h2>
+            <h2>Connected Accounts</h2>
             <div className={styles.gameAccounts}>
                   <div className={styles.gameAccountItem}>
                     <button
@@ -87,8 +87,6 @@ export default function Profile(props) {
                       disabled={"student" in session.user ? true : false}
                     >Connect{"student" in session.user ? "ed" : ""} Student Email</button>
                   </div>
-                  <h2 className={styles.gameAccountItem}>Steam</h2>
-                  <h2 className={styles.gameAccountItem}>Epic Games</h2>
             </div>
           </div>
           { foundUser.player !== null ?

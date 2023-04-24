@@ -13,6 +13,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const foundOrg = await prisma.tournamentOrganiser.findUnique({
         where: {
           id: Number(orgId)
+        },
+        include: {
+          owner: {
+            select: {
+              username: true
+            },
+          },
+          tournaments: true
         }
       }).then(data => res.status(200).json(data))
       return

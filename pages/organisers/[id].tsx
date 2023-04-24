@@ -10,6 +10,7 @@ import useSWR  from 'swr';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import TournamentList from '../../components/tournamentList'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -42,6 +43,15 @@ export default function Organiser(props) {
 
   if (typeof window !== "undefined" && status !== "authenticated") return null;
   if(data) {
+    console.log(data)
+    const organiser = {name: data.name}
+    console.log(organiser)
+
+    for(let i = 0; i < data.tournaments.length; i++){
+      // console.log(data.tournaments[i].name)
+      data.tournaments[i].organiser = organiser;
+    }
+
     return (
       <>
         <Head>
@@ -61,6 +71,7 @@ export default function Organiser(props) {
               </div>
               <div className={styles.profileSummary}>
                 <h2>{data.name}</h2>
+                <h3>Created By: {data.owner.username}</h3>
                 <h3>Created: 26/01/23</h3>
                 <h3>{data.description}</h3>
               </div>
@@ -68,18 +79,9 @@ export default function Organiser(props) {
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Tournaments</h2>
               <div className={styles.cardRow}>
-                {/* <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/>
-                <PlayerCard/> */}
+              {
+									data.tournaments.length > 0 ? <TournamentList tournaments={data.tournaments} /> : <h3>No tournaments found</h3>
+							}
               </div>
           </div>
         </div>

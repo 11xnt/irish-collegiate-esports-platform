@@ -64,8 +64,10 @@ export default function Tournament(props) {
               </div>
               <div className={styles.profileSummary}>
                 <h2><b>{data.name}</b></h2>
-                <h4>{data.maxTeams} Teams</h4>
+                <h3 onClick={() => router.push(`/organisers/${data.organiser.id}`)}>{data.organiser.name}</h3>
+                <h4>{data.maxTeams} Maximum Teams</h4>
                 <h4>Created: {data.createdAt}</h4>
+                <h4>{data.gameName}</h4>
               </div>
           </div>
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>

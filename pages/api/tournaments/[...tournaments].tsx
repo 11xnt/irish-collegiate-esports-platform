@@ -20,7 +20,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               include: {
                 players: true
               }
-            }
+            },
+            organiser: true
           }
         }).then(data => res.status(200).json(data))
         return

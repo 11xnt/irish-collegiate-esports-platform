@@ -16,8 +16,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const foundUser = await prisma.user.findUnique({
                     where: {
                         id: userId[0]
+                    },
+                    include: {
+                        playerID: true,
                     }
-                }).then(data => res.status(200).json({foundUser: data}))
+                }).then(data => res.status(200).json(data))
                 return
 
             } else if(req.query.users[1] === "orgs") {
@@ -51,7 +54,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 })
 
-                return res.status(200).json({player: foundUserTeams, foundUser})
+                return res.status(200).json({foundUserTeams, foundUser})
             } return
         } else {
             return res.status(404).json("user not found")

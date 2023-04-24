@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             } else if(userId[1] === "teams") {
                 const foundPlayer = await prisma.player.findUnique({
                     where: {
-                        id: Number(userId[0])
+                        id: parseInt(userId[0])
                     },
                     include: {
                         teams: {

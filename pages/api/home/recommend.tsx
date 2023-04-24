@@ -19,10 +19,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             const foundTeams = await prisma.team.findMany({
                 take: 6,
+                include: {
+                    players: true
+                }
             })
-
-            console.log(foundTours)
-            console.log(foundTeams)
 
             return res.status(200).json({foundTours, foundTeams})
 

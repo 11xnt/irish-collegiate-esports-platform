@@ -52,6 +52,7 @@ export default function Tournament(props) {
         <main>
         <Menu/>
           <div className={styles.container}>
+            {/*           {isDisplay ? <JoinTeamForm user={session.user.id}/> : null} */}
           {/* row */}
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <div className={styles.profileImage}>

@@ -35,13 +35,14 @@ export default function Profile(props) {
       }
   }},[router, session])
 
-  const { data: foundUser, error: userError } = useSWR(calledPush ? `/api/users/${session.user.id}/teams` : null, fetcher);
-  if(!foundUser) return <div>Loading...</div>
-  if(userError) return <div>Failed to load</div>
+  const { data, error} = useSWR(calledPush ? `/api/users/${session.user.id}/teams` : null, fetcher);
+  if(!data) return <div>Loading...</div>
+  if(error) return <div>Failed to load</div>
 
   if (typeof window !== "undefined" && status !== "authenticated") return null;
 
-  if(foundUser) {
+  if(data) {
+    console.log(data)
   return (
       <>
         <Head>
@@ -60,15 +61,15 @@ export default function Profile(props) {
                       alt=''/>
               </div>
               <div className={styles.profileSummary}>
-                <h2>{foundUser.foundUser.username}</h2>
-                <h3>{foundUser.foundUser.firstName} {foundUser.foundUser.lastName}</h3>
-                <h3>{foundUser.player === null ? "" : foundUser.player.institute} </h3>
-                <h3>Joined: {foundUser.foundUser.createdAt}</h3>
+                <h2>{data.foundUser.username}</h2>
+                <h3>{data.foundUser.firstName} {data.foundUser.lastName}</h3>
+                <h3>{data.foundUserTeams === null ? "" : data.foundUserTeams.institute.name} </h3>
+                <h3>Joined: {data.foundUser.createdAt}</h3>
                 <h4>{"student" in session.user ? "Verified":""}</h4>
               </div>
               <br/><br/>
               <div>
-                {"student" in session.user && foundUser.player == null ? <button onClick={() => setDisplay(!isDisplay)}>Become a player</button> : null}
+                {"student" in session.user && data.player == null ? <button onClick={() => setDisplay(!isDisplay)}>Become a player</button> : null}
                 {isDisplay ? <PlayerForm user={session.user.email}/> : null}
               </div>
           </div>
@@ -89,12 +90,12 @@ export default function Profile(props) {
                   </div>
             </div>
           </div>
-          { foundUser.player !== null ?
+          { data.player !== null ?
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <h2>Teams</h2>
                 <div className={styles.cardRow}>
                   {
-                    foundUser.player.teams.length > 0 ? <TeamList teams={foundUser.player.teams}/> : <h2>No Teams Found</h2>
+                    data.foundUserTeams?.teams.length > 0 ? <TeamList teams={data.foundUserTeams.teams}/> : <h2>No Teams Found</h2>
                   }
                 </div>
           </div>

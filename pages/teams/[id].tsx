@@ -10,6 +10,7 @@ import useSWR  from 'swr';
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
+import JoinTeamForm from '../../components/forms/joinTeam'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,6 +22,7 @@ export default function Team(props) {
   const { data: session, status } = useSession()
   const id = router.query.id as string
   const [calledPush, setCalledPush] = useState(false)
+  const [isDisplay, setDisplay] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
@@ -36,6 +38,18 @@ export default function Team(props) {
       }
   }},[router,session])
 
+  const handleSubmit = (e: React.ChangeEvent<any>) => {
+    e.preventDefault()
+
+    fetch(e.target.action,
+    {
+          headers: {
+              "Content-Type": "application/json",
+          },
+          method: 'POST'
+    }).then(() => {window.location.reload()})
+}
+
   const { data, error } = useSWR(`/api/teams/${id}`, fetcher)
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
@@ -43,6 +57,7 @@ export default function Team(props) {
   if (typeof window !== "undefined" && status !== "authenticated") return null;
   if(data) {
     console.log(data)
+    const checkPlayer = obj => obj.userId === session.user.id;
     return (
       <>
         <Head>
@@ -54,7 +69,10 @@ export default function Team(props) {
         <main>
         <Menu/>
           <div className={styles.container}>
-          {/* row */}
+          {"student" in session.user && !data.players.some(checkPlayer) ?
+          <form action={`/api/teams/${id}/join/${session.user.id}`} method='post' onSubmit={handleSubmit}>
+            <button className={styles.joinButton} type='submit'>Join team</button>
+          </form> : null}
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <div className={styles.profileImage}>
                   <Image src="/images/default_player.png" fill

@@ -15,7 +15,7 @@
 }
 
 .container {
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
   align-content: space-between;
   margin: 10rem 15rem 10rem 15rem;
@@ -120,6 +120,16 @@
   min-height: 100vh;
 }
 
+.joinButton {
+  position: relative;
+  justify-content: space-between;
+  display: flex;
+  padding: 1rem;
+  text-align: right;
+  float: right;
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
 
 .menu {
   position: fixed;

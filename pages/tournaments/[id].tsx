@@ -8,6 +8,7 @@ import useSWR  from 'swr';
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
+import JoinTeamForm from '../../components/forms/joinTeam'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ export default function Tournament(props) {
   const { data: session, status } = useSession()
   const id = router.query.id as string
   const [calledPush, setCalledPush] = useState(false)
+  const [isDisplay, setDisplay] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){
@@ -52,7 +54,8 @@ export default function Tournament(props) {
         <main>
         <Menu/>
           <div className={styles.container}>
-            {/*           {isDisplay ? <JoinTeamForm user={session.user.id}/> : null} */}
+          <button className={styles.joinButton} onClick={() => setDisplay(!isDisplay)}>Join tournament</button>
+          {isDisplay ? <JoinTeamForm tournament={id} user={session.user.id}/> : null}
           {/* row */}
           <div className={`${styles.containerItem} ${styles.containerItem3}`}>
               <div className={styles.profileImage}>
@@ -69,7 +72,7 @@ export default function Tournament(props) {
               <h2>Teams</h2>
               <div className={styles.cardRow}>
                 {
-                  data.partTeams.length > 0 ? <TeamList teams={data.teams}/> : <h4>No teams yet</h4>
+                  data.partTeams.length > 0 ? <TeamList teams={data.partTeams}/> : <h4>No teams yet</h4>
                 }
               </div>
           </div>

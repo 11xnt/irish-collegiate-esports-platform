@@ -16,14 +16,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             id: Number(tourId[0])
           },
           include: {
-            partTeams: true,
+            partTeams: {
+              include: {
+                players: true
+              }
+            }
           }
         }).then(data => res.status(200).json(data))
         return
       }
 
       if (req.method === 'POST') {
-          const data = req.body
+        const data = req.body
+        if (req.query.tournaments.length === 1) {
           console.log(data)
           const newTour = await prisma.tournament.upsert({
               create: {
@@ -37,7 +42,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               where: { name: data.tourName },
           }).then(data => res.status(200).json(data));
           return
+
+        } else if(req.query.tournaments[1] === "join") {
+          console.log(data)
+          console.log(req.query.tournaments[0])
+          const tourId = req.query.tournaments[0]
+          const foundTour = await prisma.tournament.update({
+            where: {
+              id: Number(tourId)
+            },
+            data: {
+              partTeams: {
+                connect: {
+                  name: data.teamName
+                }
+              }
+            }
+          }).then(data => res.status(200).json(data));
+          return
         }
+      }
     } else {
       return res.status(403).json("Access denied.")
     }

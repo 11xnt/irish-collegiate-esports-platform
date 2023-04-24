@@ -7,17 +7,17 @@ import useSWR	from 'swr';
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
-export default function JoinTeamForm({user}) {
+export default function JoinTeamForm({tournament, user}) {
   const { data, error } = useSWR(`/api/users/${user}/teams`, fetcher);
   const [name, setName] = React.useState("")
 	const [formSuc, setFormSuc] = React.useState(false)
 	const [value, setValue] = React.useState("b");
+	const [teamId, setTeamId] = React.useState(0)
 
 	const handleSubmit = (e: React.ChangeEvent<any>) => {
 			e.preventDefault()
 			const data = {
-          name: name,
-					email: user,
+          teamName: teamId,
       }
 			const dataJSON = JSON.stringify(data)
 
@@ -35,8 +35,7 @@ export default function JoinTeamForm({user}) {
 			// const inputName = e.target.name
 			const inputVal = e.target.value
 			console.log(inputVal)
-			setName(inputVal)
-
+			setTeamId(inputVal)
 	}
 
 	if(!data) return <h1>Loading...</h1>
@@ -53,9 +52,9 @@ export default function JoinTeamForm({user}) {
     return (
         <div className={styles.teamCard}>
 						{formSuc ? <h1>Success</h1> :
-						<form action={`/api/tournaments/create`} method="POST" onSubmit={handleSubmit} key={"player"}>
+						<form action={`/api/tournaments/${tournament}/join`} method="POST" onSubmit={handleSubmit} key={"player"}>
                 <label htmlFor="name">Select Team: </label>
-                <select onChange={handleChange}>
+                <select required onChange={handleChange}>
 									<option value="b">Select Team...</option>
 									{getTeams(data.foundUserTeams.teams)}
 								</select>

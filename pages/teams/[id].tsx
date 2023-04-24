@@ -22,7 +22,6 @@ export default function Team(props) {
   const { data: session, status } = useSession()
   const id = router.query.id as string
   const [calledPush, setCalledPush] = useState(false)
-  const [isDisplay, setDisplay] = useState(false)
 
   useEffect(()=>{
     if(status !== "loading"){

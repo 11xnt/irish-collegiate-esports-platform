@@ -10,6 +10,7 @@ import SignInPage from './signInPage'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import TeamList from '../components/teamList'
+import PlayerList from '../components/playerList'
 
 const teamCardList = [1, 2, 3, 4, 5, 6]
 
@@ -53,7 +54,7 @@ export default function Home(props) {
 						<h2>Recommended Players</h2>
 							<div className={styles.cardRow}>
 							{
-								data.foundTeams.length > 0 ? <TeamList teams={data.foundTeams}/> : <h3>No recommended players found</h3>
+								data.foundPlayers.length > 0 ? <PlayerList players={data.foundPlayers}/> : <h3>No recommended players found</h3>
 							}
 							</div>
 					</div>

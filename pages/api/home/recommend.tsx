@@ -17,14 +17,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 }
             })
 
-            const foundTeams = await prisma.team.findMany({
+            const foundPlayers = await prisma.player.findMany({
                 take: 6,
                 include: {
-                    players: true
+                    user: {
+                        select: {
+                            username: true,
+                            playerID: {
+                                select: {
+                                    institute: true
+                                }
+                            }
+                        }
+                    }
                 }
             })
 
-            return res.status(200).json({foundTours, foundTeams})
+            return res.status(200).json({foundTours, foundPlayers})
 
         } else {
             res.status(404).json("could not find teams or tournaments")

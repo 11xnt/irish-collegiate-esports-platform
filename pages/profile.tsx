@@ -31,7 +31,7 @@ export default function Profile(props) {
         }
       } else{
         router.push('/')
-        setCalledPush(true)
+        setCalledPush(false)
       }
   }},[router, session])
 

@@ -35,7 +35,7 @@ export default function Tournament(props) {
       }
   }},[router,session])
 
-  const { data, error } = useSWR(`/api/tournaments/${id}`, fetcher)
+  const { data, error } = useSWR(calledPush ? `/api/tournaments/${id}` : null, fetcher)
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>

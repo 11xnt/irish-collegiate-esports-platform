@@ -38,9 +38,6 @@ export default function Admin(props) {
 
 	if (typeof window !== "undefined" && status !== "authenticated") return null;
 
-	if (status === "loading") {
-		return <p>Hang on there...</p>
-	}
 	if (status === "authenticated" && session?.user.role === "admin") {
 	return (
 			<>
@@ -84,6 +81,12 @@ export default function Admin(props) {
 			</>
 		)
 	} else {
-		router.push('/')
+		return (
+			<>
+				<div>
+					<h1>Not authorized</h1>
+				</div>
+			</>
+		)
 	}
 }

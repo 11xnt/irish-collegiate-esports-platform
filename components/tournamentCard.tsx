@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 
 export default function TournamentCard({id, name, organiser, prize, gameName, maxTeams}: any) {
     const router = useRouter()
-    console.log(id)
     return (
         <div onClick={() => router.push(`/tournaments/${id}`)}>
             <div className={styles.card}>

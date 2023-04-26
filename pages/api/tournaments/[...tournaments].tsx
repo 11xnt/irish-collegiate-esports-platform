@@ -7,7 +7,6 @@ import prisma from "../../../lib/prisma"
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const session = await getServerSession(req, res, authOptions)
-    // const parsed = JSON.parse(req.body)
     if (session) {
       if (req.method === 'GET') {
         const tourId = req.query.tournaments
@@ -30,7 +29,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (req.method === 'POST') {
         const data = req.body
         if (req.query.tournaments.length === 1) {
-          console.log(data)
           const newTour = await prisma.tournament.upsert({
               create: {
                 name: data.tourName,
@@ -45,8 +43,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           return
 
         } else if(req.query.tournaments[1] === "join") {
-          console.log(data)
-          console.log(req.query.tournaments[0])
           const tourId = req.query.tournaments[0]
           const foundTour = await prisma.tournament.update({
             where: {

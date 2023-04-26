@@ -1,14 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import Menu from '../components/menu'
-import Home from './home'
 import React from 'react'
-import UserForm from '../components/forms/user'
 import { useSession, signIn, signOut } from "next-auth/react"
-import useSWR	from 'swr';
 import SignUpForm from '../components/forms/signUp'
 import SignInForm from '../components/forms/signIn'
 

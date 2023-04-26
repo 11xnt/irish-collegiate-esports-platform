@@ -42,7 +42,6 @@ export default function Profile(props) {
   if (typeof window !== "undefined" && status !== "authenticated") return null;
 
   if(data) {
-    console.log(data)
   return (
       <>
         <Head>

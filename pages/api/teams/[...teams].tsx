@@ -1,19 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from "@prisma/client"
-import NextCors from 'nextjs-cors';
 import { authOptions } from '../auth/[...nextauth]';
 import { getServerSession } from 'next-auth';
-const prisma = new PrismaClient()
+import prisma from "../../../lib/prisma"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
   // const parsed = JSON.parse(req.body)
   if (session) {
     const teamId = req.query.teams
-    // console.log(`${teamId}`)
-    // const id = teamId.slice(11)
     if (req.method === 'GET') {
-      console.log(teamId)
       if(teamId.length === 1) {
         const foundTeam = await prisma.team.findUnique({
           where: {

@@ -1,17 +1,12 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import styles from '../../styles/Home.module.css'
-import { useSession, getSession } from "next-auth/react"
 import useSWR	from 'swr';
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
 export default function JoinTeamForm({tournament, user}) {
   const { data, error } = useSWR(`/api/users/${user}/teams`, fetcher);
-  const [name, setName] = React.useState("")
 	const [formSuc, setFormSuc] = React.useState(false)
-	const [value, setValue] = React.useState("b");
 	const [teamId, setTeamId] = React.useState(0)
 
 	const handleSubmit = (e: React.ChangeEvent<any>) => {
@@ -32,16 +27,12 @@ export default function JoinTeamForm({tournament, user}) {
 	}
 
 	const handleChange = (e: React.ChangeEvent<any>) => {
-			// const inputName = e.target.name
 			const inputVal = e.target.value
-			console.log(inputVal)
 			setTeamId(inputVal)
 	}
 
 	if(!data) return <h1>Loading...</h1>
 	if(error) return <h1>Error</h1>
-
-	// if (typeof window !== "undefined" && status !== "authenticated") return null;
 
 	if(data) {
 		const getTeams = (data: any) => {

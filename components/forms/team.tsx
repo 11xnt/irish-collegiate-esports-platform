@@ -1,8 +1,5 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import styles from '../../styles/Home.module.css'
-import { useSession, getSession } from "next-auth/react"
 
 export default function TeamForm({user}) {
 
@@ -16,7 +13,6 @@ export default function TeamForm({user}) {
 					user: user
       }
 			const dataJSON = JSON.stringify(data)
-			// const data2 = JSON.parse(data)*/
 			fetch(e.target.action,
 					{
 							headers: {

@@ -1,5 +1,3 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import styles from '../../styles/Home.module.css'
 import useSWR	from 'swr';
@@ -35,7 +33,7 @@ export default function TournamentForm({user}) {
           maxTeamSize: maxTeamSize,
       }
 			const dataJSON = JSON.stringify(data)
-			// const data2 = JSON.parse(data)*/
+
 			fetch(e.target.action,
 					{
 							headers: {
@@ -77,8 +75,6 @@ export default function TournamentForm({user}) {
 	if(gamesError || orgsError) return <h1>Error</h1>
 
   if(games && orgs) {
-    // console.log(games);
-    // console.log(orgs.ownerOf);
     const getGames = (games: any) => {
       return games.map((e) => {
         return <option value={e.name}>{e.name}</option>

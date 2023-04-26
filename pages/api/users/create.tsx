@@ -1,17 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { PrismaClient } from "@prisma/client"
 import bcrypt from 'bcryptjs'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '../auth/[...nextauth]'
-const prisma = new PrismaClient()
+import prisma from "../../../lib/prisma"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const session = await getServerSession(req, res, authOptions)
-    // const parsed = JSON.parse(req.body)
-    // if (session) {
         if (req.method === 'POST') {
             const data = req.body
-            console.log(data)
 
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(data.password, salt)
@@ -31,7 +27,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         } else {
             return res.status(404).json("could not create user")
         }
-    // } else {
-    //     return res.status(403).json("Access denied.")
-    // }
 }

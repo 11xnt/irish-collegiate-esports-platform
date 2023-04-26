@@ -19,7 +19,7 @@ import { useSession } from 'next-auth/react'
 export default function Admin(props) {
 
 	const router = useRouter()
-  const { data: session, status } = useSession()
+	const { data: session, status } = useSession()
 	const [calledPush, setCalledPush] = useState(false)
 
   useEffect(()=>{

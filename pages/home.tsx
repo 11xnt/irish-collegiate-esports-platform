@@ -18,7 +18,7 @@ const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json()
 
 export default function Home(props) {
 
-  const { data: session, status } = useSession()
+  	const { data: session, status } = useSession()
 	const { data, error } = useSWR('/api/home/recommend', fetcher);
 
 	if (status === "loading") {

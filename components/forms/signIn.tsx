@@ -6,7 +6,6 @@ export default function SignInForm() {
 
     const [email, setEmail] = React.useState("")
     const [password, setPassword] = React.useState("")
-    const [formSuc, setFormSuc] = React.useState(false)
 
     async function handleSubmit(e: React.ChangeEvent<any>) {
         e.preventDefault()

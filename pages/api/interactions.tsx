@@ -1,15 +1,11 @@
-import axios from "axios"
 import { NextApiRequest, NextApiResponse } from "next"
 import { customAlphabet } from "nanoid"
 import { APIApplicationCommandInteraction, APIEmbed, APIInteractionResponse } from "discord-api-types/v10"
 import withDiscordInteraction from '../../middlewares/discord-interactions'
 import withErrorHandler from "../../middlewares/error-handler"
-import { PrismaClient } from "@prisma/client"
-// import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "../../lib/prisma"
 
 const nanoid = customAlphabet("abcdefghijklmnopqrstuvwxyz-", 16)
-// const prisma = PrismaAdapter(prisma);
 
 
 const BASE_RESPONSE = { type: 4 }

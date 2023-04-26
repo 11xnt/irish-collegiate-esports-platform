@@ -7,11 +7,9 @@ import prisma from '../../../lib/prisma'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
-  // const parsed = JSON.parse(req.body)
   if (session) {
     if (req.method === 'POST') {
         const data = req.body
-        console.log(data)
         const newTour = await prisma.tournament.create({
             data: {
               name: data.name,

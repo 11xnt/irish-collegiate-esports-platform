@@ -43,12 +43,9 @@ export default function Organiser(props) {
 
   if (typeof window !== "undefined" && status !== "authenticated") return null;
   if(data) {
-    console.log(data)
     const organiser = {name: data.name}
-    console.log(organiser)
 
     for(let i = 0; i < data.tournaments.length; i++){
-      // console.log(data.tournaments[i].name)
       data.tournaments[i].organiser = organiser;
     }
 

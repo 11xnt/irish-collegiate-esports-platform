@@ -55,7 +55,6 @@ export default function Team(props) {
 
   if (typeof window !== "undefined" && status !== "authenticated") return null;
   if(data) {
-    console.log(data)
     const checkPlayer = obj => obj.userId === session.user.id;
     return (
       <>

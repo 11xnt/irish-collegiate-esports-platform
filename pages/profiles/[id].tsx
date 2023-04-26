@@ -40,7 +40,6 @@ export default function Profile() {
   if (typeof window !== "undefined" && status !== "authenticated") return null;
 
   if(foundPlayer) {
-    console.log(foundPlayer)
   return (
       <>
         <Head>

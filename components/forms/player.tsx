@@ -1,21 +1,15 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React from 'react'
 import styles from '../../styles/Home.module.css'
-import { useSession, getSession } from "next-auth/react"
 import useSWR	from 'swr';
 
 const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
 export default function PlayerForm({user}) {
 
-  // const [institutes, setInstitutes] = React.useState([])
-
   const { data, error } = useSWR('/api/institute/all', fetcher);
 
   const [name, setName] = React.useState("")
 	const [formSuc, setFormSuc] = React.useState(false)
-	const [value, setValue] = React.useState("b");
 
 	const handleSubmit = (e: React.ChangeEvent<any>) => {
 			e.preventDefault()
@@ -38,7 +32,6 @@ export default function PlayerForm({user}) {
 	const handleChange = (e: React.ChangeEvent<any>) => {
 			// const inputName = e.target.name
 			const inputVal = e.target.value
-			console.log(inputVal)
 			setName(inputVal)
 
 	}

@@ -1,9 +1,5 @@
 
 import React from 'react'
-import { useSession, signIn, signOut } from "next-auth/react"
-import useSWR	from 'swr';
-
-const fetcher = (...args: [any, any]) => fetch(...args).then((res) => res.json())
 
 export default function SignUpForm() {
 

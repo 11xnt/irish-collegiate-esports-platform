@@ -7,17 +7,11 @@ import prisma from '../../../lib/prisma'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const session = await getServerSession(req, res, authOptions)
-    // const parsed = JSON.parse(req.body)
     if (session) {
         if (req.method === 'POST') {
             const data = req.body
-            // const parsed = JSON.parse(data.name)
-            console.log(data)
             const newPlayer = await prisma.player.create({
                 data: {
-                    // name: data.institute,
-                    // captain : data.user,
-                    // players: [data.user]
                     user: {
                         connect: {
                             email: data.email

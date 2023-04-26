@@ -42,6 +42,9 @@ export default function Teams(props) {
 
   if (error) return <div>Failed to load</div>
   if (!data) return <div>Loading...</div>
+
+  if (typeof window !== "undefined" && status !== "authenticated") return null;
+
   if(data) {
     return (
       <>

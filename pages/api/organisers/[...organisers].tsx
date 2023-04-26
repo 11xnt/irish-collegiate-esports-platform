@@ -9,7 +9,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (session) {
     const orgId = req.query.organisers
     if (req.method === 'GET') {
-      // console.log(id)
       const foundOrg = await prisma.tournamentOrganiser.findUnique({
         where: {
           id: Number(orgId)

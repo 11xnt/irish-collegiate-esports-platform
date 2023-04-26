@@ -15,7 +15,6 @@ export default function GameForm() {
           abbrev: abbrev,
       }
 			const dataJSON = JSON.stringify(data)
-			// const data2 = JSON.parse(data)*/
 			fetch(e.target.action,
 					{
 							headers: {

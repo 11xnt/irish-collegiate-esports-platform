@@ -1,11 +1,9 @@
-import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 export default function TeamCard({team}: any) {
   const router = useRouter()
-  console.log(team)
   return (
     <div>
       <div className={styles.pCard}>

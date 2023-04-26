@@ -11,11 +11,8 @@ const pages = [
 ]
 
 export default function Menu() {
-    // const { data: session, status } = useSession()
     const router = useRouter()
     const currentRoute = router.pathname
-    // const [calledPush, setCalledPush] = useState(false)
-    // console.log(currentRoute)
 
     return (
         <div className={styles.menu}>

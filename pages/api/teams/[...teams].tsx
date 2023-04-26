@@ -5,7 +5,6 @@ import prisma from "../../../lib/prisma"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions)
-  // const parsed = JSON.parse(req.body)
   if (session) {
     const teamId = req.query.teams
     if (req.method === 'GET') {

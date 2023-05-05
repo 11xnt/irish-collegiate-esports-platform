@@ -27,7 +27,7 @@ export default function SignInPage(props) {
               <h2>Or</h2>
               <br/>
 
-              <h2>Sign In with Connected Accounts</h2>
+              <h2>Sign test In with Connected Accounts</h2>
               <button onClick={() => signIn("discord")}>Discord</button>
             </div>
             <div>
